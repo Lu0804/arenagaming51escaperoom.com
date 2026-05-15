@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stanza 1 - Il Mistero</title>
+    <style>
+        body { margin: 0; background: #111; color: white; font-family: sans-serif; }
+        nav { padding: 20px; background: #000; display: flex; justify-content: space-between; }
+        .content { padding: 50px; max-width: 800px; margin: auto; text-align: center; }
+        .room-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
+        .back-btn { color: white; text-decoration: none; border: 1px solid white; padding: 10px 20px; display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
 
+    <nav>
+        <a href="index.html" style="color: white; text-decoration: none;">← Torna alla Home</a>
+    </nav>
+
+    <div class="content">
+        <h1>Stanza 1: Il Mistero del Faraone</h1>
+        <img src="immagine-stanza1.jpg" alt="Stanza 1" class="room-image">
+        <p>Qui puoi inserire la descrizione della stanza, il livello di difficoltà, il tempo a disposizione e il numero di giocatori.</p>
+        
+        <ul style="list-style: none; padding: 20px; background: #222; border-radius: 10px;">
+            <li><strong>Difficoltà:</strong> 4/5</li>
+            <li><strong>Giocatori:</strong> 2-6</li>
+            <li><strong>Tempo:</strong> 60 minuti</li>
+        </ul>
+
+        <a href="index.html#prenota" class="back-btn">PRENOTA ORA</a>
+    </div>
+
+</body>
+</html>
