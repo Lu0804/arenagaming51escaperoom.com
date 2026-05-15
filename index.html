@@ -58,52 +58,62 @@
         }
 
         /* MENU A TENDINA MEJORADO */
-        .dropdown { position: relative; }
+    /* MENU A TENDINA MIGLIORATO */
+.dropdown { 
+    position: relative; 
+    display: inline-block;
+}
 
-        .dropbtn {
-            background: transparent;
-            color: white;
-            padding: 10px 25px;
-            font-size: 18px;
-            font-family: 'Orbitron', sans-serif;
-            border: 1px solid var(--primary-color);
-            cursor: pointer;
-            transition: 0.3s;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); /* Forma trapezoidal */
-        }
+.dropbtn {
+    background: transparent;
+    color: white;
+    padding: 10px 25px;
+    font-size: 18px;
+    font-family: 'Orbitron', sans-serif;
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+    transition: 0.3s;
+    /* Rimuoviamo il clip-path se ti dava problemi di clic, usiamo un bordo classico */
+    text-transform: uppercase;
+}
 
-        .dropbtn:hover {
-            background: var(--primary-color);
-            box-shadow: 0 0 20px var(--primary-color);
-        }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: rgba(0, 0, 0, 0.95);
+    min-width: 250px;
+    border: 1px solid var(--primary-color);
+    z-index: 1000;
+    
+    /* TRUCCO: Questo margine superiore negativo e il padding 
+       creano un "ponte" invisibile così il menu non si chiude */
+    margin-top: 0; 
+    padding-top: 10px; 
+}
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            min-width: 250px;
-            border: 1px solid var(--primary-color);
-            margin-top: 10px;
-        }
+/* Mostra il menu sia quando passi sopra il tasto, sia quando sei sopra il contenuto */
+.dropdown:hover .dropdown-content { 
+    display: block; 
+}
 
-        .dropdown-content a {
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-            display: block;
-            font-weight: bold;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
-        }
+.dropdown-content a {
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+    font-family: 'Rajdhani', sans-serif;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+    background: black; /* Sfondo solido per i link */
+}
 
-        .dropdown-content a:hover {
-            background: var(--primary-color);
-            padding-left: 25px;
-        }
-
-        .dropdown:hover .dropdown-content { display: block; }
-
+.dropdown-content a:hover {
+    background: var(--primary-color);
+    color: white;
+    padding-left: 30px; /* Effetto movimento al passaggio */
+}
         /* TEXTOS CENTRALES */
         .logo-text {
             font-family: 'Orbitron', sans-serif;
