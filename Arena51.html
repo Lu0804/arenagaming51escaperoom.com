@@ -13,6 +13,9 @@
             --bg-dark: #050505;
         }
 
+        /* Scorrimento fluido per tutta la pagina */
+        html { scroll-behavior: smooth; }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -22,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* --- NAV BAR --- */
+        /* --- NAV BAR CON LINGUE --- */
         nav {
             position: fixed;
             top: 0;
@@ -32,12 +35,36 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .logo-container img { height: 70px; filter: drop-shadow(0 0 10px var(--primary-color)); }
+        .logo-container img { height: 60px; filter: drop-shadow(0 0 10px var(--primary-color)); }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent-color);
+            color: black;
+            border-color: var(--accent-color);
+        }
 
         .btn-back {
             color: white;
@@ -51,47 +78,29 @@
 
         .btn-back:hover { background: white; color: black; }
 
-        /* --- HERO SECTION CON TU IMAGEN --- */
-       /* --- HERO SECTION OTTIMIZZATA --- */
-.hero-room {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10%;
-    
-    /* MODIFICA 1: Sfondo più nitido ma con contrasto per leggere bene */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
-                url('motel.png') no-repeat center center/cover;
-    
-    /* MODIFICA 2: Togliamo 'fixed' se ti sembra che l'immagine si muova male */
-    background-attachment: scroll; 
-}
+        /* --- HERO SECTION --- */
+        .hero-room {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 10% 50px 10%;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
+                        url('image_0954b6.jpg') no-repeat center center/cover;
+            background-attachment: scroll; 
+        }
 
-/* MODIFICA 3: Aggiungiamo un'ombra ai testi per staccarli dallo sfondo */
-h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 4.5rem;
-    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9); /* Ombra forte */
-}
-
-.story-text {
-    font-size: 1.4rem;
-    background: rgba(0, 0, 0, 0.4); /* Un leggero velo nero dietro al testo */
-    padding: 20px;
-    border-radius: 5px;
-    text-shadow: 2px 2px 5px black;
-}
         .container {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 60px;
             z-index: 2;
-            max-width: 1300px;
+            max-width: 1400px;
+            width: 100%;
         }
 
-        /* --- IZQUIERDA --- */
+        /* --- SINISTRA: STORIA E PREZZI --- */
         .content-box { animation: slideInLeft 1s ease-out; }
 
         .badge-new {
@@ -107,28 +116,64 @@ h1 {
 
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 4.5rem;
+            font-size: 4rem;
             line-height: 1;
             margin-bottom: 20px;
-            text-shadow: 0 0 15px var(--primary-color);
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9);
         }
 
         .story-text {
             font-size: 1.3rem;
-            color: #ccc;
-            margin-bottom: 40px;
-            max-width: 600px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-left: 3px solid var(--primary-color);
+            text-shadow: 2px 2px 5px black;
+            margin-bottom: 30px;
         }
 
-        /* --- DERECHA --- */
-        .data-sheet {
+        /* Griglia Tariffe */
+        .pricing-container {
             background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+        }
+
+        .pricing-title {
+            color: var(--accent-color);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .price-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .price-card h4 { color: #ccc; font-size: 0.9rem; margin-bottom: 5px; }
+        .price-card p { color: white; font-size: 1.4rem; font-weight: bold; font-family: 'Orbitron', sans-serif;}
+        .price-card span { font-size: 0.8rem; color: #888; }
+
+        /* --- DESTRA: SCHEDA DATI --- */
+        .data-sheet {
+            background: rgba(0, 0, 0, 0.7);
             border: 1px solid var(--accent-color);
             padding: 40px;
             backdrop-filter: blur(10px);
             position: relative;
             animation: slideInRight 1s ease-out;
             box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            height: fit-content;
         }
 
         .data-sheet::before {
@@ -157,15 +202,18 @@ h1 {
         .btn-reserve {
             margin-top: 30px;
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background: var(--primary-color);
             color: white;
             text-align: center;
             text-decoration: none;
             font-family: 'Orbitron', sans-serif;
             font-weight: bold;
+            font-size: 1.2rem;
             display: block;
             transition: 0.3s;
+            cursor: pointer;
+            border: none;
         }
 
         .btn-reserve:hover {
@@ -173,21 +221,79 @@ h1 {
             transform: scale(1.02);
         }
 
-        /* --- ANIMACIONES --- */
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
+        /* --- SEZIONE PRENOTAZIONE (CALENDARIO E MAPPA) --- */
+        .booking-section {
+            padding: 80px 10%;
+            background: #0a0a0a;
+            border-top: 2px solid var(--primary-color);
         }
 
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
+        .booking-section h2 {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: white;
         }
 
-        @media (max-width: 900px) {
-            .container { grid-template-columns: 1fr; }
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .booking-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+        }
+
+        .booking-panel h3 {
+            color: var(--accent-color);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        /* Placeholder Calendario */
+        .calendar-placeholder {
+            width: 100%;
+            height: 400px;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255,255,255,0.3);
+            color: #666;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Mappa */
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            filter: invert(90%) hue-rotate(180deg) contrast(110%); /* Stile scuro per la mappa */
+        }
+
+        .location-info {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .location-info strong { color: var(--primary-color); }
+
+        /* --- ANIMAZIONI E RESPONSIVE --- */
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+
+        @media (max-width: 1000px) {
+            .container, .booking-grid { grid-template-columns: 1fr; }
             h1 { font-size: 3rem; }
-            .hero-room { height: auto; padding: 120px 20px 50px 20px; }
+            nav { padding: 10px 20px; }
+            .nav-right { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -197,7 +303,15 @@ h1 {
         <div class="logo-container">
             <a href="index.html"><img src="Logo.png" alt="Arena Logo"></a>
         </div>
-        <a href="index.html" class="btn-back">VOLVER AL INICIO</a>
+        <div class="nav-right">
+            <div class="lang-switcher">
+                <a href="#" class="lang-btn active">ES</a>
+                <a href="#" class="lang-btn">EN</a>
+                <a href="#" class="lang-btn">IT</a>
+                <a href="#" class="lang-btn">CA</a>
+            </div>
+            <a href="index.html" class="btn-back">VOLVER AL INICIO</a>
+        </div>
     </nav>
 
     <section class="hero-room">
@@ -207,11 +321,32 @@ h1 {
                 <span class="badge-new">Nivel: Élite</span>
                 <h1>ARENA 51</h1>
                 <p class="story-text">
-Año 1961, Estados Unidos, John F. Kenedy presidente, las relaciones con la URSS están al límite.
-Como agente del gobierno tu objetivo será encontrar los documentos secretos que portaba la desaparecida Natalie Kirk.
-Adéntrate en un Motel de la época y descubre los secretos ocultos de la habitación 51.
-¿Serás capaz de resolver todos sus misterios?
+                    Año 1961, Estados Unidos, John F. Kennedy presidente, las relaciones con la URSS están al límite.
+                    Como agente del gobierno tu objetivo será encontrar los documentos secretos que portaba la desaparecida Natalie Kirk.
+                    Adéntrate en un Motel de la época y descubre los secretos ocultos de la habitación 51.
+                    ¿Serás capaz de resolver todos sus misterios?
                 </p>
+
+                <div class="pricing-container">
+                    <h3 class="pricing-title">PRECIOS (Lunes - Jueves)</h3>
+                    <div class="pricing-grid">
+                        <div class="price-card"><h4>2 Jugadores</h4><p>25€</p><span>/ persona</span></div>
+                        <div class="price-card"><h4>3 Jugadores</h4><p>20€</p><span>/ persona</span></div>
+                        <div class="price-card"><h4>4 Jugadores</h4><p>19€</p><span>/ persona</span></div>
+                        <div class="price-card"><h4>5 Jugadores</h4><p>18€</p><span>/ persona</span></div>
+                        <div class="price-card"><h4>6 Jugadores</h4><p>17€</p><span>/ persona</span></div>
+                    </div>
+
+                    <h3 class="pricing-title">PRECIOS (Viernes - Domingo)</h3>
+                    <div class="pricing-grid">
+                        <div class="price-card"><h4>2 Jugadores</h4><p>27€</p><span>/ persona</span></div>
+                        <div class="price-card"><h4>3 Jugadores</h4><p>22€</p><span>/ persona</span></div>
+                        <div class="price-card"><h4>4 Jugadores</h4><p>21€</p><span>/ persona</span></div>
+                        <div class="price-card"><h4>5 Jugadores</h4><p>20€</p><span>/ persona</span></div>
+                        <div class="price-card"><h4>6 Jugadores</h4><p>19€</p><span>/ persona</span></div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="data-sheet">
@@ -227,12 +362,33 @@ Adéntrate en un Motel de la época y descubre los secretos ocultos de la habita
                     <span class="data-label">Dificultad</span>
                     <span class="data-value" style="color: #ffcc00;">CRÍTICA</span>
                 </div>
-                <div class="data-row">
-                    <span class="data-label">Tarifa</span>
-                    <span class="data-value">15€/p</span>
-                </div>
                 
-                <a href="#" class="btn-reserve">INICIAR RESERVA</a>
+                <a href="#reserva-seccion" class="btn-reserve">INICIAR RESERVA</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="reserva-seccion" class="booking-section">
+        <h2>RESERVA AHORA</h2>
+        <div class="booking-grid">
+            
+            <div class="booking-panel">
+                <h3>Elige tu fecha</h3>
+                <div class="calendar-placeholder">
+                    <p>Aquí irá el widget interactivo del calendario de reservas.<br>(Pega el código iframe o script de tu sistema de reservas)</p>
+                </div>
+            </div>
+
+            <div class="booking-panel">
+                <h3>Ubicación</h3>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.3734493390977!2d-3.602758284698579!3d37.1683415798744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71fcb9e2c451cb%3A0xc6c7a72c1c68e1a!2sC.%20P%C3%A1rraga%2C%205%2C%2018002%20Granada%2C%20Spain!5e0!3m2!1sen!2sit!4v1683210000000!5m2!1sen!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="location-info">
+                    <p>📍 <strong>Dirección:</strong> Calle Párraga 5, Granada</p>
+                    <p>📞 <strong>Teléfono:</strong> 958 981 679</p>
+                </div>
             </div>
 
         </div>
