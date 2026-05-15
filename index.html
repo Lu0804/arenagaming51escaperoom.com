@@ -1,10 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <title>Il mio sito gratuito</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome Tua Escape Room</title>
+    <style>
+        /* Reset delle impostazioni base */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+
+        /* CONTENITORE SFONDO (Hero Section) */
+        .hero {
+            height: 100vh; /* Occupa il 100% dell'altezza dello schermo */
+            width: 100%;
+            /* Inserisci qui l'URL della tua immagine tra gli apici */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=2071') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* MENU DI NAVIGAZIONE */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* MENU A TENDINA (Dropdown) */
+        .dropdown { position: relative; display: inline-block; }
+
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid white;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0,0,0,0.9);
+            min-width: 220px;
+            z-index: 1;
+            border: 1px solid #444;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover { background-color: #333; }
+        .dropdown:hover .dropdown-content { display: block; } /* Mostra al passaggio del mouse */
+
+        /* LOGO E TESTO CENTRALE */
+        .logo-text { font-size: 4rem; font-weight: 900; letter-spacing: 8px; text-transform: uppercase; }
+        .subtitle { font-size: 1.2rem; margin-bottom: 30px; letter-spacing: 2px; }
+        
+        .btn-cta {
+            padding: 15px 40px;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .btn-cta:hover { background: white; color: black; }
+    </style>
 </head>
 <body>
-    <h1>Ciao Mondo! Questo è il mio sito su GitHub Pages.</h1>
-    <p>Creato senza spendere un centesimo.</p>
+
+    <nav>
+        <div style="font-size: 24px; font-weight: bold;">MY LOGO</div>
+        
+        <div class="dropdown">
+            <button class="dropbtn">Scegli la Stanza ▼</button>
+            <div class="dropdown-content">
+                <a href="stanza1.html">Stanza 1: Il Mistero</a>
+                <a href="stanza2.html">Stanza 2: L'Asilo</a>
+                <a href="stanza3.html">Stanza 3: Il Laboratorio</a>
+                <a href="stanza4.html">Stanza 4: Fuga dal Carcere</a>
+                <a href="stanza5.html">Stanza 5: Tempio Antico</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1 class="logo-text">ARENA ESCAPE</h1>
+        <p class="subtitle">IL LIVELLO PRO È STATO SBLOCCATO!</p>
+        <a href="#prenota" class="btn-cta">RESERVA TU SITIO</a>
+    </div>
+
 </body>
 </html>
