@@ -58,6 +58,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 0.8rem;
             transition: 0.3s;
+            text-transform: uppercase;
         }
 
         .lang-btn:hover, .lang-btn.active {
@@ -86,8 +87,9 @@
             align-items: center;
             justify-content: center;
             padding: 120px 10% 50px 10%;
+            /* SFONDO AGGIORNATO CON motel.png */
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
-                        url('image_0954b6.jpg') no-repeat center center/cover;
+                        url('motel.png') no-repeat center center/cover;
             background-attachment: scroll; 
         }
 
@@ -174,6 +176,8 @@
             animation: slideInRight 1s ease-out;
             box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
             height: fit-content;
+            /* MARGINE SUPERIORE AGGIUNTO PER ABBASSARE IL RIQUADRO */
+            margin-top: 100px;
         }
 
         .data-sheet::before {
@@ -224,7 +228,7 @@
         /* --- SEZIONE PRENOTAZIONE (CALENDARIO E MAPPA) --- */
         .booking-section {
             padding: 80px 10%;
-            background: #0a0a0a;
+            background: #1a0505; /* Colore di sfondo scuro/rossastro stile screenshot */
             border-top: 2px solid var(--primary-color);
         }
 
@@ -234,6 +238,7 @@
             font-size: 3rem;
             margin-bottom: 50px;
             color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
 
         .booking-grid {
@@ -243,9 +248,10 @@
         }
 
         .booking-panel {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 30px;
+            border-radius: 10px;
         }
 
         .booking-panel h3 {
@@ -255,26 +261,61 @@
             font-size: 1.5rem;
         }
 
-        /* Placeholder Calendario */
-        .calendar-placeholder {
-            width: 100%;
-            height: 400px;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px dashed rgba(255,255,255,0.3);
-            color: #666;
-            text-align: center;
+        /* Mockup Calendario */
+        .calendar-mockup {
+            background: #2a0808; /* Colore ispirato al tuo screenshot */
+            border-radius: 8px;
             padding: 20px;
+            font-family: Arial, sans-serif;
+            color: #ff9900;
         }
+
+        .cal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .cal-header .cal-title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .cal-month-selector {
+            background: #d97706; /* Arancione */
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            width: 200px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .cal-day-name { color: #ff9900; font-weight: bold; margin-bottom: 10px; }
+        .cal-day-past { color: #555; }
+        .cal-day { color: #ccc; cursor: pointer; }
+        .cal-day:hover { color: white; }
+        .cal-day.active { color: #ff0000; font-weight: bold; font-size: 1.1rem; }
 
         /* Mappa */
         .map-container iframe {
             width: 100%;
             height: 400px;
             border: none;
-            filter: invert(90%) hue-rotate(180deg) contrast(110%); /* Stile scuro per la mappa */
+            border-radius: 5px;
+            filter: invert(90%) hue-rotate(180deg) contrast(110%);
         }
 
         .location-info {
@@ -294,6 +335,7 @@
             h1 { font-size: 3rem; }
             nav { padding: 10px 20px; }
             .nav-right { flex-direction: column; gap: 10px; }
+            .data-sheet { margin-top: 0px; } /* Reset margine su cellulare */
         }
     </style>
 </head>
@@ -375,9 +417,25 @@
             
             <div class="booking-panel">
                 <h3>Elige tu fecha</h3>
-                <div class="calendar-placeholder">
-                    <p>Aquí irá el widget interactivo del calendario de reservas.<br>(Pega el código iframe o script de tu sistema de reservas)</p>
-                </div>
+                <div class="calendar-mockup">
+                    <div class="cal-header">
+                        <span class="cal-title">Arena 51</span>
+                        <div class="cal-month-selector">
+                            <span>&lt;</span>
+                            <span>May 2026</span>
+                            <span>&gt;</span>
+                        </div>
+                    </div>
+                    <div class="cal-grid">
+                        <div class="cal-day-name">LU</div><div class="cal-day-name">MA</div><div class="cal-day-name">MI</div><div class="cal-day-name">JU</div><div class="cal-day-name">VI</div><div class="cal-day-name">SÁ</div><div class="cal-day-name">DO</div>
+                        
+                        <div class="cal-day-past">27</div><div class="cal-day-past">28</div><div class="cal-day-past">29</div><div class="cal-day-past">30</div><div class="cal-day-past">1</div><div class="cal-day-past">2</div><div class="cal-day-past">3</div>
+                        <div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div>
+                        <div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day active">15</div><div class="cal-day">16</div><div class="cal-day">17</div>
+                        <div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div>
+                        <div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day">31</div>
+                    </div>
+                    </div>
             </div>
 
             <div class="booking-panel">
