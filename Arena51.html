@@ -59,6 +59,7 @@
             font-size: 0.8rem;
             transition: 0.3s;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         .lang-btn:hover, .lang-btn.active {
@@ -87,7 +88,6 @@
             align-items: center;
             justify-content: center;
             padding: 120px 10% 50px 10%;
-            /* SFONDO AGGIORNATO CON motel.png */
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
                         url('motel.png') no-repeat center center/cover;
             background-attachment: scroll; 
@@ -176,12 +176,11 @@
             animation: slideInRight 1s ease-out;
             box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
             height: fit-content;
-            /* MARGINE SUPERIORE AGGIUNTO PER ABBASSARE IL RIQUADRO */
             margin-top: 100px;
         }
 
-        .data-sheet::before {
-            content: "DATOS DE MISIÓN";
+        /* Modificato per gestire la traduzione via Javascript */
+        .data-sheet-title {
             position: absolute;
             top: -15px; right: 20px;
             background: var(--accent-color);
@@ -190,6 +189,7 @@
             font-weight: bold;
             font-size: 0.8rem;
             font-family: 'Orbitron';
+            text-transform: uppercase;
         }
 
         .data-row {
@@ -225,10 +225,10 @@
             transform: scale(1.02);
         }
 
-        /* --- SEZIONE PRENOTAZIONE (CALENDARIO E MAPPA) --- */
+        /* --- SEZIONE PRENOTAZIONE E MAPPA --- */
         .booking-section {
             padding: 80px 10%;
-            background: #1a0505; /* Colore di sfondo scuro/rossastro stile screenshot */
+            background: #1a0505;
             border-top: 2px solid var(--primary-color);
         }
 
@@ -261,53 +261,21 @@
             font-size: 1.5rem;
         }
 
-        /* Mockup Calendario */
-        .calendar-mockup {
-            background: #2a0808; /* Colore ispirato al tuo screenshot */
-            border-radius: 8px;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            color: #ff9900;
-        }
-
-        .cal-header {
+        /* Spazio Segnaposto Calendario */
+        .calendar-placeholder {
+            width: 100%;
+            min-height: 350px;
+            background: rgba(0,0,0,0.6);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-        }
-        
-        .cal-header .cal-title {
-            color: white;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .cal-month-selector {
-            background: #d97706; /* Arancione */
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            display: flex;
-            justify-content: space-between;
-            width: 200px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .cal-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 15px;
+            justify-content: center;
+            border: 1px dashed var(--primary-color);
+            color: #ddd;
             text-align: center;
-            font-size: 0.95rem;
+            padding: 30px;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
-
-        .cal-day-name { color: #ff9900; font-weight: bold; margin-bottom: 10px; }
-        .cal-day-past { color: #555; }
-        .cal-day { color: #ccc; cursor: pointer; }
-        .cal-day:hover { color: white; }
-        .cal-day.active { color: #ff0000; font-weight: bold; font-size: 1.1rem; }
 
         /* Mappa */
         .map-container iframe {
@@ -335,7 +303,7 @@
             h1 { font-size: 3rem; }
             nav { padding: 10px 20px; }
             .nav-right { flex-direction: column; gap: 10px; }
-            .data-sheet { margin-top: 0px; } /* Reset margine su cellulare */
+            .data-sheet { margin-top: 0px; }
         }
     </style>
 </head>
@@ -347,12 +315,12 @@
         </div>
         <div class="nav-right">
             <div class="lang-switcher">
-                <a href="#" class="lang-btn active">ES</a>
-                <a href="#" class="lang-btn">EN</a>
-                <a href="#" class="lang-btn">IT</a>
-                <a href="#" class="lang-btn">CA</a>
+                <a class="lang-btn active" data-lang="es">ES</a>
+                <a class="lang-btn" data-lang="en">EN</a>
+                <a class="lang-btn" data-lang="it">IT</a>
+                <a class="lang-btn" data-lang="ca">CA</a>
             </div>
-            <a href="index.html" class="btn-back">VOLVER AL INICIO</a>
+            <a href="index.html" class="btn-back" id="t-nav-back">VOLVER AL INICIO</a>
         </div>
     </nav>
 
@@ -360,9 +328,9 @@
         <div class="container">
             
             <div class="content-box">
-                <span class="badge-new">Nivel: Élite</span>
+                <span class="badge-new" id="t-badge">Nivel: Élite</span>
                 <h1>ARENA 51</h1>
-                <p class="story-text">
+                <p class="story-text" id="t-story">
                     Año 1961, Estados Unidos, John F. Kennedy presidente, las relaciones con la URSS están al límite.
                     Como agente del gobierno tu objetivo será encontrar los documentos secretos que portaba la desaparecida Natalie Kirk.
                     Adéntrate en un Motel de la época y descubre los secretos ocultos de la habitación 51.
@@ -370,87 +338,205 @@
                 </p>
 
                 <div class="pricing-container">
-                    <h3 class="pricing-title">PRECIOS (Lunes - Jueves)</h3>
+                    <h3 class="pricing-title" id="t-price-1">PRECIOS (Lunes - Jueves)</h3>
                     <div class="pricing-grid">
-                        <div class="price-card"><h4>2 Jugadores</h4><p>25€</p><span>/ persona</span></div>
-                        <div class="price-card"><h4>3 Jugadores</h4><p>20€</p><span>/ persona</span></div>
-                        <div class="price-card"><h4>4 Jugadores</h4><p>19€</p><span>/ persona</span></div>
-                        <div class="price-card"><h4>5 Jugadores</h4><p>18€</p><span>/ persona</span></div>
-                        <div class="price-card"><h4>6 Jugadores</h4><p>17€</p><span>/ persona</span></div>
+                        <div class="price-card"><h4>2 <span class="t-players">Jugadores</span></h4><p>25€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>3 <span class="t-players">Jugadores</span></h4><p>20€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>4 <span class="t-players">Jugadores</span></h4><p>19€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>5 <span class="t-players">Jugadores</span></h4><p>18€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>6 <span class="t-players">Jugadores</span></h4><p>17€</p><span class="t-person">/ persona</span></div>
                     </div>
 
-                    <h3 class="pricing-title">PRECIOS (Viernes - Domingo)</h3>
+                    <h3 class="pricing-title" id="t-price-2">PRECIOS (Viernes - Domingo)</h3>
                     <div class="pricing-grid">
-                        <div class="price-card"><h4>2 Jugadores</h4><p>27€</p><span>/ persona</span></div>
-                        <div class="price-card"><h4>3 Jugadores</h4><p>22€</p><span>/ persona</span></div>
-                        <div class="price-card"><h4>4 Jugadores</h4><p>21€</p><span>/ persona</span></div>
-                        <div class="price-card"><h4>5 Jugadores</h4><p>20€</p><span>/ persona</span></div>
-                        <div class="price-card"><h4>6 Jugadores</h4><p>19€</p><span>/ persona</span></div>
+                        <div class="price-card"><h4>2 <span class="t-players">Jugadores</span></h4><p>27€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>3 <span class="t-players">Jugadores</span></h4><p>22€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>4 <span class="t-players">Jugadores</span></h4><p>21€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>5 <span class="t-players">Jugadores</span></h4><p>20€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>6 <span class="t-players">Jugadores</span></h4><p>19€</p><span class="t-person">/ persona</span></div>
                     </div>
                 </div>
-
             </div>
 
             <div class="data-sheet">
+                <div class="data-sheet-title" id="t-data-title">DATOS DE MISIÓN</div>
                 <div class="data-row">
-                    <span class="data-label">Agentes</span>
+                    <span class="data-label" id="t-agents">Agentes</span>
                     <span class="data-value">2 - 6</span>
                 </div>
                 <div class="data-row">
-                    <span class="data-label">Tiempo</span>
+                    <span class="data-label" id="t-time">Tiempo</span>
                     <span class="data-value">60 Min</span>
                 </div>
                 <div class="data-row">
-                    <span class="data-label">Dificultad</span>
-                    <span class="data-value" style="color: #ffcc00;">CRÍTICA</span>
+                    <span class="data-label" id="t-diff">Dificultad</span>
+                    <span class="data-value" style="color: #ffcc00;" id="t-critical">CRÍTICA</span>
                 </div>
                 
-                <a href="#reserva-seccion" class="btn-reserve">INICIAR RESERVA</a>
+                <a href="#reserva-seccion" class="btn-reserve" id="t-btn-reserve">INICIAR RESERVA</a>
             </div>
 
         </div>
     </section>
 
     <section id="reserva-seccion" class="booking-section">
-        <h2>RESERVA AHORA</h2>
+        <h2 id="t-book-title">RESERVA AHORA</h2>
         <div class="booking-grid">
             
             <div class="booking-panel">
-                <h3>Elige tu fecha</h3>
-                <div class="calendar-mockup">
-                    <div class="cal-header">
-                        <span class="cal-title">Arena 51</span>
-                        <div class="cal-month-selector">
-                            <span>&lt;</span>
-                            <span>May 2026</span>
-                            <span>&gt;</span>
-                        </div>
-                    </div>
-                    <div class="cal-grid">
-                        <div class="cal-day-name">LU</div><div class="cal-day-name">MA</div><div class="cal-day-name">MI</div><div class="cal-day-name">JU</div><div class="cal-day-name">VI</div><div class="cal-day-name">SÁ</div><div class="cal-day-name">DO</div>
-                        
-                        <div class="cal-day-past">27</div><div class="cal-day-past">28</div><div class="cal-day-past">29</div><div class="cal-day-past">30</div><div class="cal-day-past">1</div><div class="cal-day-past">2</div><div class="cal-day-past">3</div>
-                        <div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div>
-                        <div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day active">15</div><div class="cal-day">16</div><div class="cal-day">17</div>
-                        <div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div>
-                        <div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day">31</div>
-                    </div>
-                    </div>
+                <h3 id="t-choose-date">Elige tu fecha</h3>
+                
+                <div class="calendar-placeholder">
+                    <p id="t-cal-placeholder">
+                        El widget interactivo del calendario no se puede generar con código estático porque requiere conectarse a la base de datos de tu sistema de reservas. 
+                        <br><br>
+                        <strong>Aquí deberás pegar el código (por ejemplo, un iframe) que te proporcione tu plataforma de reservas (Bookeo, Bookly, etc.).</strong>
+                    </p>
+                </div>
+                
             </div>
 
             <div class="booking-panel">
-                <h3>Ubicación</h3>
+                <h3 id="t-location">Ubicación</h3>
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.3734493390977!2d-3.602758284698579!3d37.1683415798744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71fcb9e2c451cb%3A0xc6c7a72c1c68e1a!2sC.%20P%C3%A1rraga%2C%205%2C%2018002%20Granada%2C%20Spain!5e0!3m2!1sen!2sit!4v1683210000000!5m2!1sen!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="location-info">
-                    <p>📍 <strong>Dirección:</strong> Calle Párraga 5, Granada</p>
-                    <p>📞 <strong>Teléfono:</strong> 958 981 679</p>
+                    <p>📍 <strong id="t-address">Dirección:</strong> Calle Párraga 5, Granada</p>
+                    <p>📞 <strong id="t-phone">Teléfono:</strong> 958 981 679</p>
                 </div>
             </div>
 
         </div>
     </section>
 
+    <script>
+        const translations = {
+            es: {
+                nav_back: "VOLVER AL INICIO",
+                badge: "Nivel: Élite",
+                story: "Año 1961, Estados Unidos, John F. Kennedy presidente, las relaciones con la URSS están al límite. Como agente del gobierno tu objetivo será encontrar los documentos secretos que portaba la desaparecida Natalie Kirk. Adéntrate en un Motel de la época y descubre los secretos ocultos de la habitación 51. ¿Serás capaz de resolver todos sus misterios?",
+                price_1: "PRECIOS (Lunes - Jueves)",
+                price_2: "PRECIOS (Viernes - Domingo)",
+                players: "Jugadores",
+                person: "/ persona",
+                data_title: "DATOS DE MISIÓN",
+                agents: "Agentes",
+                time: "Tiempo",
+                diff: "Dificultad",
+                critical: "CRÍTICA",
+                btn_reserve: "INICIAR RESERVA",
+                book_title: "RESERVA AHORA",
+                choose_date: "Elige tu fecha",
+                cal_placeholder: "El widget interactivo del calendario no se puede generar con código estático porque requiere conectarse a la base de datos de tu sistema de reservas. <br><br><strong>Aquí deberás pegar el código (por ejemplo, un iframe) que te proporcione tu plataforma de reservas (Bookeo, Bookly, etc.).</strong>",
+                location: "Ubicación",
+                address: "Dirección:",
+                phone: "Teléfono:"
+            },
+            en: {
+                nav_back: "BACK TO START",
+                badge: "Level: Elite",
+                story: "Year 1961, United States, President John F. Kennedy, relations with the USSR are on the edge. As a government agent, your objective is to find the secret documents carried by the missing Natalie Kirk. Enter a Motel of the era and discover the hidden secrets of Room 51. Will you be able to solve all its mysteries?",
+                price_1: "PRICES (Monday - Thursday)",
+                price_2: "PRICES (Friday - Sunday)",
+                players: "Players",
+                person: "/ person",
+                data_title: "MISSION DATA",
+                agents: "Agents",
+                time: "Time",
+                diff: "Difficulty",
+                critical: "CRITICAL",
+                btn_reserve: "START BOOKING",
+                book_title: "BOOK NOW",
+                choose_date: "Choose your date",
+                cal_placeholder: "The interactive calendar widget cannot be generated with static code because it requires connecting to your booking system's database. <br><br><strong>Here you must paste the code (e.g., an iframe) provided by your booking platform (Bookeo, Bookly, etc.).</strong>",
+                location: "Location",
+                address: "Address:",
+                phone: "Phone:"
+            },
+            it: {
+                nav_back: "TORNA ALLA HOME",
+                badge: "Livello: Élite",
+                story: "Anno 1961, Stati Uniti, presidente John F. Kennedy, le relazioni con l'URSS sono al limite. Come agente del governo il tuo obiettivo sarà trovare i documenti segreti trasportati dalla scomparsa Natalie Kirk. Entra in un Motel dell'epoca e scopri i segreti nascosti della stanza 51. Sarai in grado di risolvere tutti i suoi misteri?",
+                price_1: "PREZZI (Lunedì - Giovedì)",
+                price_2: "PREZZI (Venerdì - Domenica)",
+                players: "Giocatori",
+                person: "/ persona",
+                data_title: "DATI MISSIONE",
+                agents: "Agenti",
+                time: "Tempo",
+                diff: "Difficoltà",
+                critical: "CRITICA",
+                btn_reserve: "INIZIA PRENOTAZIONE",
+                book_title: "PRENOTA ORA",
+                choose_date: "Scegli la tua data",
+                cal_placeholder: "Il widget interattivo del calendario non può essere generato con codice statico perché richiede la connessione al database del tuo sistema di prenotazione. <br><br><strong>Qui dovrai incollare il codice (es. un iframe) fornito dalla tua piattaforma di prenotazione (Bookeo, Bookly, ecc.).</strong>",
+                location: "Posizione",
+                address: "Indirizzo:",
+                phone: "Telefono:"
+            },
+            ca: {
+                nav_back: "TORNAR A L'INICI",
+                badge: "Nivell: Elit",
+                story: "Any 1961, Estats Units, John F. Kennedy president, les relacions amb l'URSS estan al límit. Com a agent del govern el teu objectiu serà trobar els documents secrets que portava la desapareguda Natalie Kirk. Endinsa't en un Motel de l'època i descobreix els secrets ocults de l'habitació 51. Seràs capaç de resoldre tots els seus misteris?",
+                price_1: "PREUS (Dilluns - Dijous)",
+                price_2: "PREUS (Divendres - Diumenge)",
+                players: "Jugadors",
+                person: "/ persona",
+                data_title: "DADES DE MISSIÓ",
+                agents: "Agents",
+                time: "Temps",
+                diff: "Dificultat",
+                critical: "CRÍTICA",
+                btn_reserve: "INICIAR RESERVA",
+                book_title: "RESERVA ARA",
+                choose_date: "Tria la teva data",
+                cal_placeholder: "El widget interactiu del calendari no es pot generar amb codi estàtic perquè requereix connectar-se a la base de dades del teu sistema de reserves. <br><br><strong>Aquí hauràs d'enganxar el codi (per exemple, un iframe) que et proporcioni la teva plataforma de reserves (Bookeo, Bookly, etc.).</strong>",
+                location: "Ubicació",
+                address: "Adreça:",
+                phone: "Telèfon:"
+            }
+        };
+
+        const langBtns = document.querySelectorAll('.lang-btn');
+
+        function setLanguage(lang) {
+            // Aggiorna testi singoli
+            document.getElementById('t-nav-back').innerText = translations[lang].nav_back;
+            document.getElementById('t-badge').innerText = translations[lang].badge;
+            document.getElementById('t-story').innerText = translations[lang].story;
+            document.getElementById('t-price-1').innerText = translations[lang].price_1;
+            document.getElementById('t-price-2').innerText = translations[lang].price_2;
+            document.getElementById('t-data-title').innerText = translations[lang].data_title;
+            document.getElementById('t-agents').innerText = translations[lang].agents;
+            document.getElementById('t-time').innerText = translations[lang].time;
+            document.getElementById('t-diff').innerText = translations[lang].diff;
+            document.getElementById('t-critical').innerText = translations[lang].critical;
+            document.getElementById('t-btn-reserve').innerText = translations[lang].btn_reserve;
+            document.getElementById('t-book-title').innerText = translations[lang].book_title;
+            document.getElementById('t-choose-date').innerText = translations[lang].choose_date;
+            document.getElementById('t-cal-placeholder').innerHTML = translations[lang].cal_placeholder;
+            document.getElementById('t-location').innerText = translations[lang].location;
+            document.getElementById('t-address').innerText = translations[lang].address;
+            document.getElementById('t-phone').innerText = translations[lang].phone;
+
+            // Aggiorna testi ripetuti
+            document.querySelectorAll('.t-players').forEach(el => el.innerText = translations[lang].players);
+            document.querySelectorAll('.t-person').forEach(el => el.innerText = translations[lang].person);
+        }
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Rimuove la classe 'active' da tutti i pulsanti
+                langBtns.forEach(b => b.classList.remove('active'));
+                // Aggiunge la classe 'active' al pulsante cliccato
+                btn.classList.add('active');
+                // Prende la lingua dal data-attribute e aggiorna
+                const selectedLang = btn.getAttribute('data-lang');
+                setLanguage(selectedLang);
+            });
+        });
+    </script>
 </body>
 </html>
