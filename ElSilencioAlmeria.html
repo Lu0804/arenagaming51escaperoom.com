@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dylan Case - Misión Almería</title>
+    <title>Misión Almería - Arena</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #ff003c;
-            --accent-color: #00f2ff;
-            --bg-dark: #050505;
+            --primary-color: #e21d26; /* Puoi cambiare questo colore se la nuova missione ha un colore tema diverso */
+            --accent-color: #ffffff;
+            --bg-dark: #0a0a0a;
         }
-
         html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -23,6 +22,7 @@
             overflow-x: hidden;
         }
 
+        /* --- NAV BAR --- */
         nav {
             position: fixed;
             top: 0;
@@ -32,15 +32,15 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(226, 29, 38, 0.3);
         }
 
-        .logo-container img { height: 60px; filter: drop-shadow(0 0 10px var(--primary-color)); }
+        .logo-container img { height: 60px; filter: drop-shadow(0 0 5px var(--primary-color)); }
         .nav-right { display: flex; align-items: center; gap: 20px; }
-        .lang-switcher { display: flex; gap: 5px; }
 
+        .lang-switcher { display: flex; gap: 5px; }
         .lang-btn {
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -50,14 +50,13 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 0.8rem;
             transition: 0.3s;
-            text-transform: uppercase;
             cursor: pointer;
         }
 
         .lang-btn:hover, .lang-btn.active {
-            background: var(--accent-color);
-            color: black;
-            border-color: var(--accent-color);
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
 
         .btn-back {
@@ -72,7 +71,7 @@
 
         .btn-back:hover { background: white; color: black; }
 
-        /* --- HERO SECTION CON SFONDO ALMERIA --- */
+        /* --- HERO SECTION --- */
         .hero-room {
             position: relative;
             min-height: 100vh;
@@ -80,9 +79,10 @@
             align-items: center;
             justify-content: center;
             padding: 120px 10% 50px 10%;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                        url('Almeria.png') no-repeat center center/cover;
-            background-attachment: scroll; 
+            /* BACKGROUND AGGIORNATO */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
+                        url('almeria.png') no-repeat center center/cover;
+            background-attachment: fixed; 
         }
 
         .container {
@@ -97,7 +97,7 @@
         .content-box { animation: slideInLeft 1s ease-out; }
 
         .badge-new {
-            background: #9b59b6;
+            background: var(--primary-color);
             color: white;
             padding: 5px 15px;
             font-weight: 900;
@@ -117,27 +117,29 @@
         }
 
         .story-text {
-            font-size: 1.2rem;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-left: 3px solid var(--primary-color);
+            font-size: 1.3rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            border-left: 4px solid var(--primary-color);
             text-shadow: 2px 2px 5px black;
             margin-bottom: 30px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
+        /* Tariffe */
         .pricing-container {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(226, 29, 38, 0.2);
             padding: 20px;
         }
 
         .pricing-title {
-            color: var(--accent-color);
+            color: var(--primary-color);
             font-family: 'Orbitron', sans-serif;
             margin-bottom: 15px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             padding-bottom: 5px;
+            text-transform: uppercase;
         }
 
         .pricing-grid {
@@ -151,23 +153,26 @@
             background: rgba(255, 255, 255, 0.05);
             padding: 15px 10px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
         }
 
+        .price-card:hover { border-color: var(--primary-color); background: rgba(226, 29, 38, 0.1); }
         .price-card h4 { color: #ccc; font-size: 0.9rem; margin-bottom: 5px; }
         .price-card p { color: white; font-size: 1.4rem; font-weight: bold; font-family: 'Orbitron', sans-serif;}
         .price-card span { font-size: 0.8rem; color: #888; }
 
+        /* --- SCHEDA DATI --- */
         .data-sheet {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             border: 1px solid var(--primary-color);
             padding: 40px;
             backdrop-filter: blur(10px);
             position: relative;
             animation: slideInRight 1s ease-out;
-            box-shadow: 0 0 20px rgba(255, 0, 60, 0.2);
+            box-shadow: 0 0 30px rgba(226, 29, 38, 0.2);
             height: fit-content;
-            margin-top: 100px;
+            margin-top: 50px;
         }
 
         .data-sheet-title {
@@ -175,9 +180,9 @@
             top: -15px; right: 20px;
             background: var(--primary-color);
             color: white;
-            padding: 2px 10px;
+            padding: 2px 15px;
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-family: 'Orbitron';
             text-transform: uppercase;
         }
@@ -190,8 +195,8 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .data-label { color: var(--accent-color); font-weight: bold; text-transform: uppercase; }
-        .data-value { font-size: 1.4rem; font-weight: 700; }
+        .data-label { color: var(--primary-color); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .data-value { font-size: 1.4rem; font-weight: 700; font-family: 'Orbitron'; }
 
         .btn-reserve {
             margin-top: 30px;
@@ -208,16 +213,19 @@
             transition: 0.3s;
             cursor: pointer;
             border: none;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
         }
 
         .btn-reserve:hover {
-            box-shadow: 0 0 30px var(--primary-color);
-            transform: scale(1.02);
+            background: white;
+            color: var(--primary-color);
+            transform: scale(1.05);
         }
 
+        /* --- BOOKING SECTION --- */
         .booking-section {
             padding: 80px 10%;
-            background: #0a0a0a;
+            background: #000;
             border-top: 2px solid var(--primary-color);
         }
 
@@ -236,37 +244,41 @@
         }
 
         .booking-panel {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(20, 20, 20, 1);
+            border: 1px solid rgba(226, 29, 38, 0.3);
             padding: 30px;
-            border-radius: 10px;
         }
 
         .booking-panel h3 {
-            color: var(--accent-color);
+            color: var(--primary-color);
             font-family: 'Orbitron', sans-serif;
             margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
         }
 
         .calendar-placeholder {
             width: 100%;
             min-height: 350px;
-            background: rgba(0,0,0,0.6);
+            background: #050505;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px dashed var(--primary-color);
-            color: #ddd;
+            color: #888;
             text-align: center;
             padding: 30px;
         }
 
         .map-container iframe {
             width: 100%;
-            height: 400px;
+            height: 300px;
             border: none;
-            filter: invert(90%) hue-rotate(180deg);
+            filter: grayscale(1) invert(1);
         }
+
+        .location-info { margin-top: 20px; font-size: 1.1rem; }
+        .location-info strong { color: var(--primary-color); }
 
         @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
@@ -274,7 +286,8 @@
         @media (max-width: 1000px) {
             .container, .booking-grid { grid-template-columns: 1fr; }
             h1 { font-size: 2.5rem; }
-            .data-sheet { margin-top: 20px; }
+            nav { padding: 10px 20px; }
+            .data-sheet { margin-top: 0; }
         }
     </style>
 </head>
@@ -297,11 +310,12 @@
 
     <section class="hero-room">
         <div class="container">
+            
             <div class="content-box">
-                <span class="badge-new" id="t-badge">Misterio / Terror</span>
-                <h1 id="t-main-title">DYLAN CASE</h1>
+                <span class="badge-new" id="t-badge">[Nivel: Medio]</span>
+                <h1 id="t-main-title">[MISTERIO EN ALMERÍA]</h1>
                 <p class="story-text" id="t-story">
-                    Tras mudarse con toda la familia a una vieja casa de la ciudad de Savannah, el joven Dylan pronto empieza a comportarse de forma extraña. El pequeño asegura escuchar, ver y sentir cosas que le tienen cada vez más aterrorizado, pero nadie más puede. Sus padres creen que está perdiendo la cabeza y están pensando en buscar ayuda profesional en un internado. Sin embargo, Dylan tiene un plan para demostrar que todo lo que creen que se está inventando su cabeza, es real, que todo lo que él percibe, vive ahí con ellos.
+                    [Inserta aquí la historia de la misión de las fotos. Ejemplo: Oculto bajo el sol abrasador del desierto de Tabernas, un antiguo set de cine esconde un secreto que nunca debió salir a la luz. Vosotros y vuestro equipo tendréis que adentraros en las sombras de Almería para resolver el enigma antes de que el tiempo se agote.]
                 </p>
 
                 <div class="pricing-container">
@@ -309,18 +323,18 @@
                     <div class="pricing-grid">
                         <div class="price-card"><h4>2 <span class="t-players">Jugadores</span></h4><p>25€</p><span class="t-person">/ persona</span></div>
                         <div class="price-card"><h4>3 <span class="t-players">Jugadores</span></h4><p>20€</p><span class="t-person">/ persona</span></div>
-                        <div class="price-card"><h4>4 <span class="t-players">Jugadores</span></h4><p>18€</p><span class="t-person">/ persona</span></div>
-                        <div class="price-card"><h4>5 <span class="t-players">Jugadores</span></h4><p>16€</p><span class="t-person">/ persona</span></div>
-                        <div class="price-card"><h4>6 <span class="t-players">Jugadores</span></h4><p>15€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>4 <span class="t-players">Jugadores</span></h4><p>19€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>5 <span class="t-players">Jugadores</span></h4><p>18€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>6 <span class="t-players">Jugadores</span></h4><p>17€</p><span class="t-person">/ persona</span></div>
                     </div>
 
                     <h3 class="pricing-title" id="t-price-2">PRECIOS (Viernes - Domingo)</h3>
                     <div class="pricing-grid">
-                        <div class="price-card"><h4>2 <span class="t-players">Jugadores</span></h4><p>30€</p><span class="t-person">/ persona</span></div>
-                        <div class="price-card"><h4>3 <span class="t-players">Jugadores</span></h4><p>24€</p><span class="t-person">/ persona</span></div>
-                        <div class="price-card"><h4>4 <span class="t-players">Jugadores</span></h4><p>20€</p><span class="t-person">/ persona</span></div>
-                        <div class="price-card"><h4>5 <span class="t-players">Jugadores</span></h4><p>18€</p><span class="t-person">/ persona</span></div>
-                        <div class="price-card"><h4>6 <span class="t-players">Jugadores</span></h4><p>17€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>2 <span class="t-players">Jugadores</span></h4><p>27€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>3 <span class="t-players">Jugadores</span></h4><p>22€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>4 <span class="t-players">Jugadores</span></h4><p>21€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>5 <span class="t-players">Jugadores</span></h4><p>20€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>6 <span class="t-players">Jugadores</span></h4><p>19€</p><span class="t-person">/ persona</span></div>
                     </div>
                 </div>
             </div>
@@ -328,135 +342,88 @@
             <div class="data-sheet">
                 <div class="data-sheet-title" id="t-data-title">DATOS DE MISIÓN</div>
                 <div class="data-row">
-                    <span class="data-label" id="t-agents">Investigadores</span>
-                    <span class="data-value">2 - 6</span>
+                    <span class="data-label" id="t-agents">Agentes</span>
+                    <span class="data-value" id="t-val-agents">[2 - 6]</span>
                 </div>
                 <div class="data-row">
                     <span class="data-label" id="t-time">Tiempo</span>
-                    <span class="data-value">60 Min</span>
+                    <span class="data-value" id="t-val-time">[60 Min]</span>
                 </div>
                 <div class="data-row">
                     <span class="data-label" id="t-diff">Dificultad</span>
-                    <span class="data-value" style="color: #ffcc00;" id="t-critical">MEDIA (3/5)</span>
+                    <span class="data-value" style="color: #ff3333;" id="t-critical">[MEDIA (3/5)]</span>
                 </div>
                 
-                <a href="#reserva-seccion" class="btn-reserve" id="t-btn-reserve">INICIAR RESERVA</a>
+                <a href="#reserva-seccion" class="btn-reserve" id="t-btn-reserve">RESERVAR AHORA</a>
             </div>
+
         </div>
     </section>
 
     <section id="reserva-seccion" class="booking-section">
-        <h2 id="t-book-title">RESERVA AHORA</h2>
+        <h2 id="t-book-title">CALENDARIO DE RESERVAS</h2>
         <div class="booking-grid">
             <div class="booking-panel">
-                <h3 id="t-choose-date">Elige tu fecha</h3>
+                <h3 id="t-choose-date">Selecciona tu turno</h3>
                 <div class="calendar-placeholder">
-                    <p id="t-cal-placeholder">Cargando sistema de reservas para Almería...</p>
+                    <p id="t-cal-placeholder">
+                        Cargando sistema de reservas externo...<br><br>
+                        <strong>[Inserta aquí el código del Widget de Reservas]</strong>
+                    </p>
                 </div>
             </div>
 
             <div class="booking-panel">
-                <h3 id="t-location">Ubicación</h3>
+                <h3 id="t-location">Punto de Encuentro</h3>
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3193.3857545934527!2d-2.4578!3d36.8341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDUwJzAyLjgiTiAywrAyNyc0OC4xIlc!5e0!3m2!1ses!2ses!4v1700000000000" allowfullscreen=""></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.132847547021!2d-3.6019941!3d37.174415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71fcf988888887%3A0x8888888888888888!2sCalle%20P%C3%A1rraga%2C%205%2C%2018002%20Granada!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" allowfullscreen="" loading="lazy"></iframe>
                 </div>
                 <div class="location-info">
-                    <p>📍 <strong id="t-address">Dirección:</strong> Calle Italia 10, Almería</p>
-                    <p>📞 <strong id="t-phone">Teléfono:</strong> 613 030 258</p>
+                    <p>📍 <strong id="t-address">Dirección:</strong> Calle Párraga 5, Granada</p>
+                    <p>📞 <strong id="t-phone">Teléfono:</strong> 958 981 679</p>
                 </div>
             </div>
         </div>
     </section>
 
     <script>
+        // SOSTITUISCI I TESTI NELLE VARIE LINGUE CON I DATI DELLE FOTO
         const translations = {
             es: {
-                nav_back: "VOLVER AL INICIO",
-                badge: "Misterio / Terror",
-                main_title: "DYLAN CASE",
-                story: "Tras mudarse con toda la familia a una vieja casa de la ciudad de Savannah, el joven Dylan pronto empieza a comportarse de forma extraña. El pequeño asegura escuchar, ver y sentir cosas que le tienen cada vez más aterrorizado, pero nadie más puede. Sus padres creen que está perdiendo la cabeza y están pensando en buscar ayuda profesional en un internado. Sin embargo, Dylan tiene un plan para demostrar que todo lo que creen que se está inventando su cabeza, es real, que todo lo que él percibe, vive ahí con ellos.",
-                price_1: "PRECIOS (Lunes - Jueves)",
-                price_2: "PRECIOS (Viernes - Domingo)",
-                players: "Jugadores",
-                person: "/ persona",
-                data_title: "DATOS DE MISIÓN",
-                agents: "Investigadores",
-                time: "Tiempo",
-                diff: "Dificultad",
-                critical: "MEDIA (3/5)",
-                btn_reserve: "INICIAR RESERVA",
-                book_title: "RESERVA AHORA",
-                choose_date: "Elige tu fecha",
-                cal_placeholder: "Cargando calendario interactivo...",
-                location: "Ubicación",
-                address: "Dirección:",
-                phone: "Teléfono:"
+                nav_back: "VOLVER AL INICIO", badge: "[Nivel: Medio]", main_title: "[MISTERIO EN ALMERÍA]",
+                story: "[Inserta aquí la historia en español de la misión...]",
+                price_1: "PRECIOS (Lunes - Jueves)", price_2: "PRECIOS (Viernes - Domingo)", players: "Jugadores", person: "/ persona",
+                data_title: "DATOS DE MISIÓN", agents: "Agentes", time: "Tiempo", diff: "Dificultad", critical: "[MEDIA (3/5)]",
+                btn_reserve: "RESERVAR AHORA", book_title: "CALENDARIO DE RESERVAS", choose_date: "Selecciona tu turno",
+                location: "Punto de Encuentro", address: "Dirección:", phone: "Teléfono:",
+                val_agents: "[2 - 6]", val_time: "[60 Min]"
             },
             en: {
-                nav_back: "BACK TO HOME",
-                badge: "Mystery / Horror",
-                main_title: "DYLAN CASE",
-                story: "After moving with his whole family to an old house in the city of Savannah, young Dylan soon begins to behave strangely. The little boy claims to hear, see, and feel things that terrify him more and more, but no one else can. His parents believe he is losing his mind and are considering professional help. However, Dylan has a plan to prove that everything they think is his imagination is real, and that what he perceives lives there with them.",
-                price_1: "PRICES (Monday - Thursday)",
-                price_2: "PRICES (Friday - Sunday)",
-                players: "Players",
-                person: "/ person",
-                data_title: "MISSION DATA",
-                agents: "Investigators",
-                time: "Time",
-                diff: "Difficulty",
-                critical: "MEDIUM (3/5)",
-                btn_reserve: "START BOOKING",
-                book_title: "BOOK NOW",
-                choose_date: "Choose your date",
-                cal_placeholder: "Loading interactive calendar...",
-                location: "Location",
-                address: "Address:",
-                phone: "Phone:"
+                nav_back: "BACK TO HOME", badge: "[Level: Medium]", main_title: "[MYSTERY IN ALMERIA]",
+                story: "[Insert English story here...]",
+                price_1: "PRICES (Monday - Thursday)", price_2: "PRICES (Friday - Sunday)", players: "Players", person: "/ person",
+                data_title: "MISSION DATA", agents: "Agents", time: "Time", diff: "Difficulty", critical: "[MEDIUM (3/5)]",
+                btn_reserve: "BOOK NOW", book_title: "BOOKING CALENDAR", choose_date: "Select your slot",
+                location: "Meeting Point", address: "Address:", phone: "Phone:",
+                val_agents: "[2 - 6]", val_time: "[60 Min]"
             },
             it: {
-                nav_back: "TORNA ALLA HOME",
-                badge: "Mistero / Horror",
-                main_title: "DYLAN CASE",
-                story: "Dopo essersi trasferito con tutta la famiglia in una vecchia casa a Savannah, il giovane Dylan inizia presto a comportarsi in modo strano. Il piccolo sostiene di sentire, vedere e percepire cose che lo terrorizzano sempre di più, ma nessun altro può. I suoi genitori credono che stia impazzendo. Tuttavia, Dylan ha un piano per dimostrare che ciò che vedono come invenzioni della sua mente è reale e vive lì con loro.",
-                price_1: "PREZZI (Lunedì - Giovedì)",
-                price_2: "PREZZI (Venerdì - Domenica)",
-                players: "Giocatori",
-                person: "/ persona",
-                data_title: "DATI MISSIONE",
-                agents: "Investigatori",
-                time: "Tempo",
-                diff: "Difficoltà",
-                critical: "MEDIA (3/5)",
-                btn_reserve: "PRENOTA ORA",
-                book_title: "PRENOTA",
-                choose_date: "Scegli la data",
-                cal_placeholder: "Caricamento calendario...",
-                location: "Posizione",
-                address: "Indirizzo:",
-                phone: "Telefono:"
+                nav_back: "TORNA ALLA HOME", badge: "[Livello: Medio]", main_title: "[MISTERO AD ALMERIA]",
+                story: "[Inserisci qui la storia in italiano...]",
+                price_1: "PREZZI (Lunedì - Giovedì)", price_2: "PREZZI (Venerdì - Domenica)", players: "Giocatori", person: "/ persona",
+                data_title: "DATI MISSIONE", agents: "Agenti", time: "Tempo", diff: "Difficoltà", critical: "[MEDIA (3/5)]",
+                btn_reserve: "PRENOTA ORA", book_title: "CALENDARIO PRENOTAZIONI", choose_date: "Scegli il tuo turno",
+                location: "Punto d'incontro", address: "Indirizzo:", phone: "Telefono:",
+                val_agents: "[2 - 6]", val_time: "[60 Min]"
             },
             ca: {
-                nav_back: "TORNAR A L'INICI",
-                badge: "Misteri / Terror",
-                main_title: "DYLAN CASE",
-                story: "Després de traslladar-se amb tota la família a una casa antiga de Savannah, el jove Dylan aviat comença a comportar-se de manera estranya. El petit assegura escoltar, veure i sentir coses que el tenen cada cop més aterroritzat, però ningú més ho pot fer. Dylan té un pla per demostrar que tot el que percebeix viu allà amb ells.",
-                price_1: "PREUS (Dilluns - Dijous)",
-                price_2: "PREUS (Divendres - Diumenge)",
-                players: "Jugadors",
-                person: "/ persona",
-                data_title: "DADES DE MISSIÓ",
-                agents: "Investigadors",
-                time: "Temps",
-                diff: "Dificultat",
-                critical: "MITJANA (3/5)",
-                btn_reserve: "INICIAR RESERVA",
-                book_title: "RESERVA ARA",
-                choose_date: "Tria la data",
-                cal_placeholder: "Carregant calendari...",
-                location: "Ubicació",
-                address: "Adreça:",
-                phone: "Telèfon:"
+                nav_back: "TORNAR A L'INICI", badge: "[Nivell: Mitjà]", main_title: "[MISTERI A ALMERIA]",
+                story: "[Insereix aquí la història en català...]",
+                price_1: "PREUS (Dilluns - Dijous)", price_2: "PREUS (Divendres - Diumenge)", players: "Jugadors", person: "/ persona",
+                data_title: "DADES DE MISSIÓ", agents: "Agents", time: "Temps", diff: "Dificultat", critical: "[MITJANA (3/5)]",
+                btn_reserve: "RESERVA ARA", book_title: "CALENDARI DE RESERVES", choose_date: "Tria el teu torn",
+                location: "Punt de Trobada", address: "Adreça:", phone: "Telèfon:",
+                val_agents: "[2 - 6]", val_time: "[60 Min]"
             }
         };
 
@@ -477,10 +444,13 @@
             document.getElementById('t-btn-reserve').innerText = translations[lang].btn_reserve;
             document.getElementById('t-book-title').innerText = translations[lang].book_title;
             document.getElementById('t-choose-date').innerText = translations[lang].choose_date;
-            document.getElementById('t-cal-placeholder').innerHTML = translations[lang].cal_placeholder;
             document.getElementById('t-location').innerText = translations[lang].location;
             document.getElementById('t-address').innerText = translations[lang].address;
             document.getElementById('t-phone').innerText = translations[lang].phone;
+            
+            // Aggiorna anche i valori numerici nel caso cambino per lingua (opzionale)
+            document.getElementById('t-val-agents').innerText = translations[lang].val_agents;
+            document.getElementById('t-val-time').innerText = translations[lang].val_time;
 
             document.querySelectorAll('.t-players').forEach(el => el.innerText = translations[lang].players);
             document.querySelectorAll('.t-person').forEach(el => el.innerText = translations[lang].person);
@@ -491,8 +461,7 @@
                 e.preventDefault();
                 langBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                const selectedLang = btn.getAttribute('data-lang');
-                setLanguage(selectedLang);
+                setLanguage(btn.getAttribute('data-lang'));
             });
         });
     </script>
