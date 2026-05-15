@@ -7,10 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Variables de color para cambiar todo rápido */
         :root {
-            --primary-color: #ff003c; /* Un rojo neón potente */
-            --accent-color: #00f2ff;  /* Cian para detalles */
+            --primary-color: #ff003c; 
+            --accent-color: #00f2ff;  
             --bg-overlay: rgba(0, 0, 0, 0.7);
         }
 
@@ -23,7 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* HERO SECTION DINÁMICA - MODIFICATO: Aggiunto un overlay scuro sullo sfondo */
         .hero {
             height: 100vh;
             width: 100%;
@@ -36,137 +34,109 @@
             padding: 0 20px;
         }
 
-        /* NAVEGACIÓN ESTILO CRISTAL */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 10px 50px; /* Ridotto il padding verticale per compensare la grandezza del logo */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.6); /* Un po' più scura per far risaltare il logo */
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-.logo-container img {
-    height: 120px; /* Prima era 80px */
-    width: auto;
-    filter: drop-shadow(0 0 15px var(--primary-color));
-    transition: transform 0.3s ease;
-    display: block;
-}
+        .logo-container img {
+            height: 120px;
+            width: auto;
+            filter: drop-shadow(0 0 15px var(--primary-color));
+            transition: transform 0.3s ease;
+            display: block;
+        }
 
-.logo-container img:hover {
-    transform: scale(1.05); /* Leggero effetto ingrandimento al passaggio del mouse */
-}
-
-        /* MENU A TENDINA MEJORADO */
-    /* MENU A TENDINA MIGLIORATO */
-.dropdown { 
-    position: relative; 
-    display: inline-block;
-}
-
-.dropbtn {
-    background: transparent;
-    color: white;
-    padding: 10px 25px;
-    font-size: 18px;
-    font-family: 'Orbitron', sans-serif;
-    border: 2px solid var(--primary-color);
-    cursor: pointer;
-    transition: 0.3s;
-    /* Rimuoviamo il clip-path se ti dava problemi di clic, usiamo un bordo classico */
-    text-transform: uppercase;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background: rgba(0, 0, 0, 0.95);
-    min-width: 250px;
-    border: 1px solid var(--primary-color);
-    z-index: 1000;
-    
-    /* TRUCCO: Questo margine superiore negativo e il padding 
-       creano un "ponte" invisibile così il menu non si chiude */
-    margin-top: 0; 
-    padding-top: 10px; 
-}
-
-/* Mostra il menu sia quando passi sopra il tasto, sia quando sei sopra il contenuto */
-.dropdown:hover .dropdown-content { 
-    display: block; 
-}
-
-.dropdown-content a {
-    color: white;
-    padding: 15px;
-    text-decoration: none;
-    display: block;
-    font-weight: bold;
-    font-family: 'Rajdhani', sans-serif;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: 0.3s;
-    background: black; /* Sfondo solido per i link */
-}
-
-.dropdown-content a:hover {
-    background: var(--primary-color);
-    color: white;
-    padding-left: 30px; /* Effetto movimento al passaggio */
-}
-        /* TEXTOS CENTRALES - MODIFICATO: Aumentata l'intensità del glow neon */
         .logo-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 10vw, 6rem); /* Tamaño fluido */
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 10px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 40px var(--primary-color), 0 0 80px var(--primary-color);
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
             color: var(--accent-color);
             text-transform: uppercase;
             letter-spacing: 5px;
         }
 
-        /* BOTÓN DINÁMICO */
-        .btn-cta {
-            padding: 20px 50px;
-            background: transparent;
-            color: white;
-            border: 2px solid white;
+        /* --- NUOVO SELETTORE ORIZZONTALE --- */
+        .mission-selector {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .mission-card {
             text-decoration: none;
+            color: white;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
-            transition: 0.4s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
             overflow: hidden;
+            /* Angolo tagliato stile sci-fi */
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0% 30%);
         }
 
-        .btn-cta:hover {
-            background: white;
-            color: black;
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+        /* Effetto bordo neon al passaggio */
+        .mission-card:hover {
+            background: rgba(255, 0, 60, 0.1);
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
+            color: var(--primary-color);
+            letter-spacing: 1px;
         }
 
-        /* Animación suave al cargar */
-        .hero * {
-            animation: fadeInUp 1s ease forwards;
+        /* Decorazione interna (linea hi-tech) */
+        .mission-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .mission-card:hover::after {
+            transform: scaleX(1);
         }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive per cellulari */
+        @media (max-width: 768px) {
+            .mission-selector { gap: 10px; }
+            .mission-card { padding: 12px 18px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -178,24 +148,20 @@ nav {
                 <img src="Logo.png" alt="Arena Logo">
             </a>
         </div>
-        
-        <div class="dropdown">
-            <button class="dropbtn">MISIONES ▼</button>
-            <div class="dropdown-content">
-                <a href="Arena51.html">Arena 51</a>
-                <a href="ElBunker21.html">El Búnker 21</a>
-                <a href="ElCasoDylan.html">El Caso Dylan</a>
-                <a href="ElSilencioAlmeria.html">El Silencio</a>
-                <a href="LallaveGranada.html">La Llave Granada</a>
-            </div>
-        </div>
     </nav>
 
     <div class="hero">
         <h1 class="logo-text">ARENA GAMING</h1>
         <h2 class="logo-text">-ESCAPE ROOMS-</h2>
-        <p class="subtitle">¡EL NIVEL PRO HA SIDO DESBLOQUEADO!</p>
-        <a href="#misiones" class="btn-cta">RESERVA TU MISIÓN</a>
+        <p class="subtitle">SELECCIONA TU MISIÓN</p>
+        
+        <div class="mission-selector">
+            <a href="Arena51.html" class="mission-card">Arena 51</a>
+            <a href="ElBunker21.html" class="mission-card">El Búnker 21</a>
+            <a href="ElCasoDylan.html" class="mission-card">El Caso Dylan</a>
+            <a href="ElSilencioAlmeria.html" class="mission-card">El Silencio</a>
+            <a href="LallaveGranada.html" class="mission-card">La Llave Granada</a>
+        </div>
     </div>
 
 </body>
