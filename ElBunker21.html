@@ -1,36 +1,545 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stanza 1 - Il Mistero</title>
+    <title>El Misterio del Faraón - Misión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { margin: 0; background: #111; color: white; font-family: sans-serif; }
-        nav { padding: 20px; background: #000; display: flex; justify-content: space-between; }
-        .content { padding: 50px; max-width: 800px; margin: auto; text-align: center; }
-        .room-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
-        .back-btn { color: white; text-decoration: none; border: 1px solid white; padding: 10px 20px; display: inline-block; margin-top: 20px; }
+        :root {
+            /* Puoi cambiare i colori qui se vuoi adattarli al tema Egitto (es. #ffcc00 per l'oro), 
+               ma ho mantenuto il rosso/azzurro originale per lasciare la grafica identica ad Arena 51 */
+            --primary-color: #ff003c;
+            --accent-color: #00f2ff;
+            --bg-dark: #050505;
+        }
+
+        /* Scorrimento fluido per tutta la pagina */
+        html { scroll-behavior: smooth; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            font-family: 'Rajdhani', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- NAV BAR CON LINGUE --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-container img { height: 60px; filter: drop-shadow(0 0 10px var(--primary-color)); }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent-color);
+            color: black;
+            border-color: var(--accent-color);
+        }
+
+        .btn-back {
+            color: white;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            border: 1px solid white;
+            padding: 8px 20px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover { background: white; color: black; }
+
+        /* --- HERO SECTION --- */
+        .hero-room {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 10% 50px 10%;
+            /* Ho inserito qui l'immagine che hai caricato */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
+                        url('image_fc4346.jpg') no-repeat center center/cover;
+            background-attachment: scroll; 
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            z-index: 2;
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        /* --- SINISTRA: STORIA E PREZZI --- */
+        .content-box { animation: slideInLeft 1s ease-out; }
+
+        .badge-new {
+            background: #f39c12;
+            color: black;
+            padding: 5px 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+            transform: skew(-15deg);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9);
+        }
+
+        .story-text {
+            font-size: 1.3rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-left: 3px solid var(--primary-color);
+            text-shadow: 2px 2px 5px black;
+            margin-bottom: 30px;
+        }
+
+        /* Griglia Tariffe */
+        .pricing-container {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+        }
+
+        .pricing-title {
+            color: var(--accent-color);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .price-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .price-card h4 { color: #ccc; font-size: 0.9rem; margin-bottom: 5px; }
+        .price-card p { color: white; font-size: 1.4rem; font-weight: bold; font-family: 'Orbitron', sans-serif;}
+        .price-card span { font-size: 0.8rem; color: #888; }
+
+        /* --- DESTRA: SCHEDA DATI --- */
+        .data-sheet {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--accent-color);
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            animation: slideInRight 1s ease-out;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            height: fit-content;
+            margin-top: 100px;
+        }
+
+        .data-sheet-title {
+            position: absolute;
+            top: -15px; right: 20px;
+            background: var(--accent-color);
+            color: black;
+            padding: 2px 10px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            font-family: 'Orbitron';
+            text-transform: uppercase;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .data-label { color: var(--accent-color); font-weight: bold; text-transform: uppercase; }
+        .data-value { font-size: 1.4rem; font-weight: 700; }
+
+        .btn-reserve {
+            margin-top: 30px;
+            width: 100%;
+            padding: 18px;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: block;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-reserve:hover {
+            box-shadow: 0 0 30px var(--primary-color);
+            transform: scale(1.02);
+        }
+
+        /* --- SEZIONE PRENOTAZIONE E MAPPA --- */
+        .booking-section {
+            padding: 80px 10%;
+            background: #1a0505;
+            border-top: 2px solid var(--primary-color);
+        }
+
+        .booking-section h2 {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .booking-panel {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .booking-panel h3 {
+            color: var(--accent-color);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .calendar-placeholder {
+            width: 100%;
+            min-height: 350px;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed var(--primary-color);
+            color: #ddd;
+            text-align: center;
+            padding: 30px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Mappa */
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 5px;
+            filter: invert(90%) hue-rotate(180deg) contrast(110%);
+        }
+
+        .location-info {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .location-info strong { color: var(--primary-color); }
+
+        /* --- ANIMAZIONI E RESPONSIVE --- */
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+
+        @media (max-width: 1000px) {
+            .container, .booking-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 3rem; }
+            nav { padding: 10px 20px; }
+            .nav-right { flex-direction: column; gap: 10px; }
+            .data-sheet { margin-top: 0px; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" style="color: white; text-decoration: none;">← Torna alla Home</a>
+        <div class="logo-container">
+            <a href="index.html"><img src="Logo.png" alt="Arena Logo"></a>
+        </div>
+        <div class="nav-right">
+            <div class="lang-switcher">
+                <a class="lang-btn active" data-lang="es">ES</a>
+                <a class="lang-btn" data-lang="en">EN</a>
+                <a class="lang-btn" data-lang="it">IT</a>
+                <a class="lang-btn" data-lang="ca">CA</a>
+            </div>
+            <a href="index.html" class="btn-back" id="t-nav-back">VOLVER AL INICIO</a>
+        </div>
     </nav>
 
-    <div class="content">
-        <h1>Stanza 1: Il Mistero del Faraone</h1>
-        <img src="immagine-stanza1.jpg" alt="Stanza 1" class="room-image">
-        <p>Qui puoi inserire la descrizione della stanza, il livello di difficoltà, il tempo a disposizione e il numero di giocatori.</p>
-        
-        <ul style="list-style: none; padding: 20px; background: #222; border-radius: 10px;">
-            <li><strong>Difficoltà:</strong> 4/5</li>
-            <li><strong>Giocatori:</strong> 2-6</li>
-            <li><strong>Tempo:</strong> 60 minuti</li>
-        </ul>
+    <section class="hero-room">
+        <div class="container">
+            
+            <div class="content-box">
+                <span class="badge-new" id="t-badge">Nivel: Avanzado</span>
+                <h1 id="t-main-title">EL MISTERIO DEL FARAÓN</h1>
+                <p class="story-text" id="t-story">
+                    Egipto, Valle de los Reyes. Vuestro equipo de arqueólogos ha quedado atrapado en la tumba inexplorada del Faraón maldecido. El oxígeno se agota y los antiguos mecanismos se han activado. Tendréis que descifrar los jeroglíficos y desvelar los secretos del pasado antes de que la tumba se convierta en vuestra morada eterna. ¿Lograréis escapar de la maldición?
+                </p>
 
-        <a href="index.html#prenota" class="back-btn">PRENOTA ORA</a>
-    </div>
+                <div class="pricing-container">
+                    <h3 class="pricing-title" id="t-price-1">PRECIOS (Lunes - Jueves)</h3>
+                    <div class="pricing-grid">
+                        <div class="price-card"><h4>2 <span class="t-players">Jugadores</span></h4><p>25€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>3 <span class="t-players">Jugadores</span></h4><p>20€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>4 <span class="t-players">Jugadores</span></h4><p>19€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>5 <span class="t-players">Jugadores</span></h4><p>18€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>6 <span class="t-players">Jugadores</span></h4><p>17€</p><span class="t-person">/ persona</span></div>
+                    </div>
 
+                    <h3 class="pricing-title" id="t-price-2">PRECIOS (Viernes - Domingo)</h3>
+                    <div class="pricing-grid">
+                        <div class="price-card"><h4>2 <span class="t-players">Jugadores</span></h4><p>27€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>3 <span class="t-players">Jugadores</span></h4><p>22€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>4 <span class="t-players">Jugadores</span></h4><p>21€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>5 <span class="t-players">Jugadores</span></h4><p>20€</p><span class="t-person">/ persona</span></div>
+                        <div class="price-card"><h4>6 <span class="t-players">Jugadores</span></h4><p>19€</p><span class="t-person">/ persona</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-sheet">
+                <div class="data-sheet-title" id="t-data-title">DATOS DE MISIÓN</div>
+                <div class="data-row">
+                    <span class="data-label" id="t-agents">Agentes</span>
+                    <span class="data-value">2 - 6</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label" id="t-time">Tiempo</span>
+                    <span class="data-value">60 Min</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label" id="t-diff">Dificultad</span>
+                    <span class="data-value" style="color: #ffcc00;" id="t-critical">ALTA (4/5)</span>
+                </div>
+                
+                <a href="#reserva-seccion" class="btn-reserve" id="t-btn-reserve">INICIAR RESERVA</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="reserva-seccion" class="booking-section">
+        <h2 id="t-book-title">RESERVA AHORA</h2>
+        <div class="booking-grid">
+            
+            <div class="booking-panel">
+                <h3 id="t-choose-date">Elige tu fecha</h3>
+                
+                <div class="calendar-placeholder">
+                    <p id="t-cal-placeholder">
+                        El widget interactivo del calendario no se puede generar con código estático porque requiere conectarse a la base de datos de tu sistema de reservas. 
+                        <br><br>
+                        <strong>Aquí deberás pegar el código (por ejemplo, un iframe) que te proporcione tu plataforma de reservas (Bookeo, Bookly, etc.).</strong>
+                    </p>
+                </div>
+                
+            </div>
+
+            <div class="booking-panel">
+                <h3 id="t-location">Ubicación</h3>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.3734493390977!2d-3.602758284698579!3d37.1683415798744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71fcb9e2c451cb%3A0xc6c7a72c1c68e1a!2sC.%20P%C3%A1rraga%2C%205%2C%2018002%20Granada%2C%20Spain!5e0!3m2!1sen!2sit!4v1683210000000!5m2!1sen!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="location-info">
+                    <p>📍 <strong id="t-address">Dirección:</strong> Calle Párraga 5, Granada</p>
+                    <p>📞 <strong id="t-phone">Teléfono:</strong> 958 981 679</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        const translations = {
+            es: {
+                nav_back: "VOLVER AL INICIO",
+                badge: "Nivel: Avanzado",
+                main_title: "EL MISTERIO DEL FARAÓN",
+                story: "Egipto, Valle de los Reyes. Vuestro equipo de arqueólogos ha quedado atrapado en la tumba inexplorada del Faraón maldito. El oxígeno se agota y los antiguos mecanismos se han activado. Tendréis que descifrar los jeroglíficos y desvelar los secretos del pasado antes de que la tumba se convierta en vuestra morada eterna. ¿Lograréis escapar de la maldición?",
+                price_1: "PRECIOS (Lunes - Jueves)",
+                price_2: "PRECIOS (Viernes - Domingo)",
+                players: "Jugadores",
+                person: "/ persona",
+                data_title: "DATOS DE MISIÓN",
+                agents: "Agentes",
+                time: "Tiempo",
+                diff: "Dificultad",
+                critical: "ALTA (4/5)",
+                btn_reserve: "INICIAR RESERVA",
+                book_title: "RESERVA AHORA",
+                choose_date: "Elige tu fecha",
+                cal_placeholder: "El widget interactivo del calendario no se puede generar con código estático porque requiere conectarse a la base de datos de tu sistema de reservas. <br><br><strong>Aquí deberás pegar el código (por ejemplo, un iframe) que te proporcione tu plataforma de reservas (Bookeo, Bookly, etc.).</strong>",
+                location: "Ubicación",
+                address: "Dirección:",
+                phone: "Teléfono:"
+            },
+            en: {
+                nav_back: "BACK TO START",
+                badge: "Level: Advanced",
+                main_title: "THE PHARAOH'S MYSTERY",
+                story: "Egypt, Valley of the Kings. Your team of archaeologists has been trapped in the unexplored tomb of the cursed Pharaoh. Oxygen is running out and the ancient mechanisms have been activated. You will have to decipher the hieroglyphs and reveal the secrets of the past before the tomb becomes your eternal resting place. Will you manage to escape the curse?",
+                price_1: "PRICES (Monday - Thursday)",
+                price_2: "PRICES (Friday - Sunday)",
+                players: "Players",
+                person: "/ person",
+                data_title: "MISSION DATA",
+                agents: "Agents",
+                time: "Time",
+                diff: "Difficulty",
+                critical: "HIGH (4/5)",
+                btn_reserve: "START BOOKING",
+                book_title: "BOOK NOW",
+                choose_date: "Choose your date",
+                cal_placeholder: "The interactive calendar widget cannot be generated with static code because it requires connecting to your booking system's database. <br><br><strong>Here you must paste the code (e.g., an iframe) provided by your booking platform (Bookeo, Bookly, etc.).</strong>",
+                location: "Location",
+                address: "Address:",
+                phone: "Phone:"
+            },
+            it: {
+                nav_back: "TORNA ALLA HOME",
+                badge: "Livello: Avanzato",
+                main_title: "IL MISTERO DEL FARAONE",
+                story: "Egitto, Valle dei Re. Il vostro team di archeologi è rimasto intrappolato nella tomba inesplorata del Faraone maledetto. L'ossigeno scarseggia e gli antichi meccanismi si sono attivati. Dovrete decifrare i geroglifici e svelare i segreti del passato prima che la tomba diventi la vostra dimora eterna. Riuscirete a sfuggire alla maledizione?",
+                price_1: "PREZZI (Lunedì - Giovedì)",
+                price_2: "PREZZI (Venerdì - Domenica)",
+                players: "Giocatori",
+                person: "/ persona",
+                data_title: "DATI MISSIONE",
+                agents: "Giocatori",
+                time: "Tempo",
+                diff: "Difficoltà",
+                critical: "ALTA (4/5)",
+                btn_reserve: "INIZIA PRENOTAZIONE",
+                book_title: "PRENOTA ORA",
+                choose_date: "Scegli la tua data",
+                cal_placeholder: "Il widget interattivo del calendario non può essere generato con codice statico perché richiede la connessione al database del tuo sistema di prenotazione. <br><br><strong>Qui dovrai incollare il codice (es. un iframe) fornito dalla tua piattaforma di prenotazione (Bookeo, Bookly, ecc.).</strong>",
+                location: "Posizione",
+                address: "Indirizzo:",
+                phone: "Telefono:"
+            },
+            ca: {
+                nav_back: "TORNAR A L'INICI",
+                badge: "Nivell: Avançat",
+                main_title: "EL MISTERI DEL FARAÓ",
+                story: "Egipte, Vall dels Reis. El vostre equip d'arqueòlegs ha quedat atrapat a la tomba inexplorada del Faraó maleït. L'oxigen s'esgota i els antics mecanismes s'han activat. Haureu de desxifrar els jeroglífics i desvetllar els secrets del passat abans que la tomba es converteixi en la vostra morada eterna. Aconseguireu escapar de la maledicció?",
+                price_1: "PREUS (Dilluns - Dijous)",
+                price_2: "PREUS (Divendres - Diumenge)",
+                players: "Jugadors",
+                person: "/ persona",
+                data_title: "DADES DE MISSIÓ",
+                agents: "Agents",
+                time: "Temps",
+                diff: "Dificultat",
+                critical: "ALTA (4/5)",
+                btn_reserve: "INICIAR RESERVA",
+                book_title: "RESERVA ARA",
+                choose_date: "Tria la teva data",
+                cal_placeholder: "El widget interactiu del calendari no es pot generar amb codi estàtic perquè requereix connectar-se a la base de dades del teu sistema de reserves. <br><br><strong>Aquí hauràs d'enganxar el codi (per exemple, un iframe) que et proporcioni la teva plataforma de reserves (Bookeo, Bookly, etc.).</strong>",
+                location: "Ubicació",
+                address: "Adreça:",
+                phone: "Telèfon:"
+            }
+        };
+
+        const langBtns = document.querySelectorAll('.lang-btn');
+
+        function setLanguage(lang) {
+            // Aggiorna testi singoli
+            document.getElementById('t-nav-back').innerText = translations[lang].nav_back;
+            document.getElementById('t-badge').innerText = translations[lang].badge;
+            document.getElementById('t-main-title').innerText = translations[lang].main_title;
+            document.getElementById('t-story').innerText = translations[lang].story;
+            document.getElementById('t-price-1').innerText = translations[lang].price_1;
+            document.getElementById('t-price-2').innerText = translations[lang].price_2;
+            document.getElementById('t-data-title').innerText = translations[lang].data_title;
+            document.getElementById('t-agents').innerText = translations[lang].agents;
+            document.getElementById('t-time').innerText = translations[lang].time;
+            document.getElementById('t-diff').innerText = translations[lang].diff;
+            document.getElementById('t-critical').innerText = translations[lang].critical;
+            document.getElementById('t-btn-reserve').innerText = translations[lang].btn_reserve;
+            document.getElementById('t-book-title').innerText = translations[lang].book_title;
+            document.getElementById('t-choose-date').innerText = translations[lang].choose_date;
+            document.getElementById('t-cal-placeholder').innerHTML = translations[lang].cal_placeholder;
+            document.getElementById('t-location').innerText = translations[lang].location;
+            document.getElementById('t-address').innerText = translations[lang].address;
+            document.getElementById('t-phone').innerText = translations[lang].phone;
+
+            // Aggiorna testi ripetuti
+            document.querySelectorAll('.t-players').forEach(el => el.innerText = translations[lang].players);
+            document.querySelectorAll('.t-person').forEach(el => el.innerText = translations[lang].person);
+        }
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Rimuove la classe 'active' da tutti i pulsanti
+                langBtns.forEach(b => b.classList.remove('active'));
+                // Aggiunge la classe 'active' al pulsante cliccato
+                btn.classList.add('active');
+                // Prende la lingua dal data-attribute e aggiorna
+                const selectedLang = btn.getAttribute('data-lang');
+                setLanguage(selectedLang);
+            });
+        });
+    </script>
 </body>
 </html>
