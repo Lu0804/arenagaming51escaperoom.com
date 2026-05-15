@@ -10,133 +10,134 @@
         :root {
             --primary-color: #a4e5f5; 
             --accent-color: #00f2ff;  
-            --bg-overlay: rgba(0, 0, 0, 0.7);
+            --bg-dark: #050505;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: #050505;
+            background-color: var(--bg-dark);
             font-family: 'Rajdhani', sans-serif;
             color: white;
             overflow-x: hidden;
         }
 
-        .hero {
-            height: 100vh;
-            width: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('Sfondo.png') no-repeat center center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-
+        /* --- NAV BAR --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 10px 50px;
+            padding: 15px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(164, 229, 245, 0.1);
         }
 
-        .logo-container img {
-            height: 120px;
-            width: auto;
-            filter: drop-shadow(0 0 15px var(--primary-color));
-            transition: transform 0.3s ease;
-            display: block;
-        }
+        .logo-container img { height: 60px; }
 
-        .logo-text {
+        .lang-switcher { display: flex; gap: 8px; }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(164, 229, 245, 0.3);
+            color: white;
+            padding: 6px 14px;
+            cursor: pointer;
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 10px;
-            margin-bottom: 5px;
-            text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            border-radius: 4px;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 50px;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 5px;
+        .lang-btn.active, .lang-btn:hover {
+            background: var(--primary-color);
+            color: black;
+            border-color: var(--primary-color);
         }
 
-        /* --- NUOVO SELETTORE ORIZZONTALE --- */
-        .mission-selector {
+        /* --- HERO (PIÙ ALTA) --- */
+        .hero {
+            min-height: 70vh; /* Aumentata l'altezza minima */
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            flex-direction: column;
             justify-content: center;
-            max-width: 1200px;
-            animation: fadeInUp 1.2s ease forwards;
+            align-items: center;
+            padding: 160px 20px 80px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('Sfondo.png') no-repeat center center/cover;
+            border-bottom: 2px solid rgba(164, 229, 245, 0.2);
         }
 
-        .mission-card {
+        .logo-text { font-family: 'Orbitron', sans-serif; letter-spacing: 8px; text-transform: uppercase; }
+        h1.logo-text { font-size: 4rem; color: var(--primary-color); margin-bottom: 10px; text-shadow: 0 0 20px rgba(164, 229, 245, 0.5); }
+        h2.logo-text { font-size: 1.8rem; opacity: 0.8; font-weight: 400; }
+        .subtitle { margin-top: 40px; font-size: 1.4rem; letter-spacing: 3px; color: var(--accent-color); font-weight: 500; }
+
+        /* --- MISSIONS LIST --- */
+        .mission-container {
+            max-width: 1000px;
+            margin: 60px auto 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .mission-preview {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-decoration: none;
             color: white;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            font-weight: bold;
-            padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-transform: uppercase;
+            transition: 0.4s ease;
+            border-radius: 8px;
             overflow: hidden;
-            /* Angolo tagliato stile sci-fi */
-            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0% 30%);
         }
 
-        /* Effetto bordo neon al passaggio */
-        .mission-card:hover {
-            background: rgba(255, 0, 60, 0.1);
-            border-color: var(--primary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
-            color: var(--primary-color);
-            letter-spacing: 1px;
+        .mission-preview:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
         }
 
-        /* Decorazione interna (linea hi-tech) */
-        .mission-card::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
+        .mission-img {
             width: 100%;
-            height: 2px;
-            background: var(--primary-color);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
+            height: 100%;
+            min-height: 220px;
+            background-size: cover;
+            background-position: center;
+            transition: 0.6s;
         }
 
-        .mission-card:hover::after {
-            transform: scaleX(1);
+        .mission-preview:hover .mission-img { transform: scale(1.1); }
+
+        .mission-info {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .mission-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            letter-spacing: 2px;
         }
 
-        /* Responsive per cellulari */
-        @media (max-width: 768px) {
-            .mission-selector { gap: 10px; }
-            .mission-card { padding: 12px 18px; font-size: 0.8rem; }
+        .mission-info p { line-height: 1.6; font-size: 1.1rem; opacity: 0.85; }
+
+        @media (max-width: 800px) {
+            .mission-preview { grid-template-columns: 1fr; }
+            .hero h1.logo-text { font-size: 2.5rem; }
+            nav { padding: 10px 20px; }
         }
     </style>
 </head>
@@ -144,25 +145,129 @@
 
     <nav>
         <div class="logo-container">
-            <a href="index.html">
-                <img src="logoarenagaming.png" alt="Arena Logo">
-            </a>
+            <img src="logoarenagaming.png" alt="Arena Logo">
+        </div>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('es')">ES</button>
+            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="setLanguage('it')">IT</button>
+            <button class="lang-btn" onclick="setLanguage('ca')">CA</button>
         </div>
     </nav>
 
     <div class="hero">
         <h1 class="logo-text">ARENA GAMING</h1>
         <h2 class="logo-text">-ESCAPE ROOMS-</h2>
-        <p class="subtitle">SELECCIONA TU MISIÓN</p>
-        
-        <div class="mission-selector">
-            <a href="Arena51.html" class="mission-card">Arena 51</a>
-            <a href="ElBunker21.html" class="mission-card">El Búnker 21</a>
-            <a href="ElCasoDylan.html" class="mission-card">El Caso Dylan</a>
-            <a href="ElSilencioAlmeria.html" class="mission-card">El Silencio</a>
-            <a href="LallaveGranada.html" class="mission-card">La Llave Granada</a>
-        </div>
+        <p class="subtitle" id="t-subtitle">SELECCIONA TU MISIÓN</p>
     </div>
 
+    <div class="mission-container">
+        <a href="Arena51.html" class="mission-preview">
+            <div class="mission-img" style="background-image: url('motel.png');"></div>
+            <div class="mission-info">
+                <h3 id="t-title-arena">ARENA 51</h3>
+                <p id="t-desc-arena">Investiga los secretos ocultos en el motel más misterioso del desierto.</p>
+            </div>
+        </a>
+
+        <a href="ElBunker21.html" class="mission-preview">
+            <div class="mission-img" style="background-image: url('bunker.jpg');"></div>
+            <div class="mission-info">
+                <h3 id="t-title-bunker">EL BUNKER 21</h3>
+                <p id="t-desc-bunker">¿Podrás sobrevivir a las profundidades del Bunker 21? El tiempo corre.</p>
+            </div>
+        </a>
+
+        <a href="ElCasoDylan.html" class="mission-preview">
+            <div class="mission-img" style="background-image: url('dylan.png');"></div>
+            <div class="mission-info">
+                <h3 id="t-title-dylan">EL CASO DYLAN</h3>
+                <p id="t-desc-dylan">Únete a la investigación del detective de las pesadillas.</p>
+            </div>
+        </a>
+
+        <a href="ElSilencioAlmeria.html" class="mission-preview">
+            <div class="mission-img" style="background-image: url('elsilenciodealmeria.png');"></div>
+            <div class="mission-info">
+                <h3 id="t-title-silencio">MISIÓN ALMERÍA</h3>
+                <p id="t-desc-silencio">El silencio de Almería esconde verdades inquietantes.</p>
+            </div>
+        </a>
+
+        <a href="LallaveGranada.html" class="mission-preview">
+            <div class="mission-img" style="background-image: url('LaLlaveAGranada.png');"></div>
+            <div class="mission-info">
+                <h3 id="t-title-llave">LA LLAVE GRANADA</h3>
+                <p id="t-desc-llave">Encuentra la llave perdida por las calles históricas de la ciudad.</p>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        const translations = {
+            es: {
+                subtitle: "SELECCIONA TU MISIÓN",
+                titles: { arena: "ARENA 51", bunker: "EL BUNKER 21", dylan: "EL CASO DYLAN", silencio: "MISIÓN ALMERÍA", llave: "LA LLAVE GRANADA" },
+                arena: "Investiga los secretos ocultos en el motel más misterioso del desierto. Una misión clasificada te espera.",
+                bunker: "¿Podrás sobrevivir a las profundidades del Bunker 21? El tiempo corre y el oxígeno escasea.",
+                dylan: "Únete a la investigación del detective de las pesadillas. Un caso oscuro que desafía la lógica.",
+                silencio: "El silencio de Almería esconde verdades inquietantes. Resuelve el enigma antes de que sea tarde.",
+                llave: "Encuentra la llave perdida en Granada. Un desafío de intelecto por las calles históricas."
+            },
+            en: {
+                subtitle: "SELECT YOUR MISSION",
+                titles: { arena: "ARENA 51", bunker: "BUNKER 21", dylan: "THE DYLAN CASE", silencio: "ALMERIA MISSION", llave: "THE GRANADA KEY" },
+                arena: "Investigate the secrets hidden in the desert's most mysterious motel. A classified mission awaits.",
+                bunker: "Can you survive the depths of Bunker 21? Time is running out and oxygen is low.",
+                dylan: "Join the nightmare detective's investigation. A dark case that defies logic and fear.",
+                silencio: "The silence of Almería hides disturbing truths. Solve the riddle before it's too late.",
+                llave: "Find the lost key in Granada. A challenge of intellect through the city's historic streets."
+            },
+            it: {
+                subtitle: "SELEZIONA LA TUA MISSIONE",
+                titles: { arena: "ARENA 51", bunker: "IL BUNKER 21", dylan: "IL CASO DYLAN", silencio: "MISSIONE ALMERÍA", llave: "LA CHIAVE DI GRANADA" },
+                arena: "Investiga i segreti celati nel motel più misterioso del deserto. Una missione classificata ti attende.",
+                bunker: "Riuscirai a sopravvivere alle profondità del Bunker 21? Il tempo scorre e l'ossigeno scarseggia.",
+                dylan: "Unisciti all'indagine del detective dell'incubo. Un caso oscuro che sfida la logica e la paura.",
+                silencio: "Il silenzio di Almería nasconde verità inquietanti. Risolvi l'enigma prima che sia troppo tardi.",
+                llave: "Trova la chiave perduta a Granada. Una sfida di intelletto tra le strade storiche della città."
+            },
+            ca: {
+                subtitle: "SELECCIONA LA TEVA MISSIÓ",
+                titles: { arena: "ARENA 51", bunker: "EL BÚNQUER 21", dylan: "EL CAS DYLAN", silencio: "MISSIÓ ALMERIA", llave: "LA CLAU DE GRANADA" },
+                arena: "Investiga els secrets ocults al motel més misteriós del desert. Una missió classificada t'espera.",
+                bunker: "Podràs sobreviure a les profunditats del Bunker 21? El temps corre i l'oxigen s'esgota.",
+                dylan: "Uneix-te a la investigació del detectiu dels malsons. Un cas fosc que desafia la lògica.",
+                silencio: "El silenci d'Almeria amaga veritats inquietants. Resol l'enigma abans que sigui tard.",
+                llave: "Troba la clau perduda a Granada. Un desafiament d'intel·lecte pels carrers històrics."
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('t-subtitle').innerText = translations[lang].subtitle;
+            
+            // Aggiornamento Titoli
+            document.getElementById('t-title-arena').innerText = translations[lang].titles.arena;
+            document.getElementById('t-title-bunker').innerText = translations[lang].titles.bunker;
+            document.getElementById('t-title-dylan').innerText = translations[lang].titles.dylan;
+            document.getElementById('t-title-silencio').innerText = translations[lang].titles.silencio;
+            document.getElementById('t-title-llave').innerText = translations[lang].titles.llave;
+
+            // Aggiornamento Descrizioni
+            document.getElementById('t-desc-arena').innerText = translations[lang].arena;
+            document.getElementById('t-desc-bunker').innerText = translations[lang].bunker;
+            document.getElementById('t-desc-dylan').innerText = translations[lang].dylan;
+            document.getElementById('t-desc-silencio').innerText = translations[lang].silencio;
+            document.getElementById('t-desc-llave').innerText = translations[lang].llave;
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase() === lang) btn.classList.add('active');
+            });
+            document.documentElement.lang = lang;
+        }
+
+        window.onload = () => setLanguage('es');
+    </script>
 </body>
 </html>
