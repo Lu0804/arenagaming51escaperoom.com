@@ -1,111 +1,184 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome Tua Escape Room</title>
+    <title>Arena Escape - Experiencia Inmersiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Reset delle impostazioni base */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        /* Variables de color para cambiar todo rápido */
+        :root {
+            --primary-color: #ff003c; /* Un rojo neón potente */
+            --accent-color: #00f2ff;  /* Cian para detalles */
+            --bg-overlay: rgba(0, 0, 0, 0.7);
+        }
 
-        /* CONTENITORE SFONDO (Hero Section) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #050505;
+            font-family: 'Rajdhani', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* HERO SECTION DINÁMICA */
         .hero {
-            height: 100vh; /* Occupa il 100% dell'altezza dello schermo */
+            height: 100vh;
             width: 100%;
-            /* Inserisci qui l'URL della tua immagine tra gli apici */
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
                         url('https://www.arenagaming.es/wp-content/uploads/2018/05/arena-wallpapers3.png') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
             text-align: center;
+            padding: 0 20px;
         }
 
-        /* MENU DI NAVIGAZIONE */
+        /* NAVEGACIÓN ESTILO CRISTAL */
         nav {
-            position: absolute;
+            position: fixed; /* Ahora el menú te sigue al bajar */
             top: 0;
             width: 100%;
-            padding: 20px 50px;
+            padding: 15px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px); /* Efecto borroso detrás */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* MENU A TENDINA (Dropdown) */
-        .dropdown { position: relative; display: inline-block; }
+        .logo-container img {
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--primary-color));
+        }
+
+        /* MENU A TENDINA MEJORADO */
+        .dropdown { position: relative; }
 
         .dropbtn {
-            background-color: transparent;
+            background: transparent;
             color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: 2px solid white;
+            padding: 10px 25px;
+            font-size: 18px;
+            font-family: 'Orbitron', sans-serif;
+            border: 1px solid var(--primary-color);
             cursor: pointer;
-            text-transform: uppercase;
-            font-weight: bold;
+            transition: 0.3s;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); /* Forma trapezoidal */
+        }
+
+        .dropbtn:hover {
+            background: var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-color);
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: rgba(0,0,0,0.9);
-            min-width: 220px;
-            z-index: 1;
-            border: 1px solid #444;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            min-width: 250px;
+            border: 1px solid var(--primary-color);
+            margin-top: 10px;
         }
 
         .dropdown-content a {
             color: white;
-            padding: 12px 16px;
+            padding: 15px;
             text-decoration: none;
             display: block;
-            text-align: left;
-        }
-
-        .dropdown-content a:hover { background-color: #333; }
-        .dropdown:hover .dropdown-content { display: block; } /* Mostra al passaggio del mouse */
-
-        /* LOGO E TESTO CENTRALE */
-        .logo-text { font-size: 4rem; font-weight: 900; letter-spacing: 8px; text-transform: uppercase; }
-        .subtitle { font-size: 1.2rem; margin-bottom: 30px; letter-spacing: 2px; }
-        
-        .btn-cta {
-            padding: 15px 40px;
-            border: 2px solid white;
-            color: white;
-            text-decoration: none;
             font-weight: bold;
-            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.3s;
         }
-        .btn-cta:hover { background: white; color: black; }
+
+        .dropdown-content a:hover {
+            background: var(--primary-color);
+            padding-left: 25px;
+        }
+
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* TEXTOS CENTRALES */
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem); /* Tamaño fluido */
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px var(--primary-color);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        /* BOTÓN DINÁMICO */
+        .btn-cta {
+            padding: 20px 50px;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            position: relative;
+            transition: 0.4s;
+            overflow: hidden;
+        }
+
+        .btn-cta:hover {
+            background: white;
+            color: black;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animación suave al cargar */
+        .hero * {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-<div class="logo-container">
-    <img src="Logo.png" alt="Logo Escape Room" style="height: 50px; width: auto;">
-</div>
-<div class="dropdown">
-    <button class="dropbtn">Scegli la Stanza ▼</button>
-    <div class="dropdown-content">
-        <a href="Arena51.html">Arena 51</a>
-        <a href="ElBunker21.html">El Bunker 21</a>
-        <a href="ElCasoDylan.html">El Caso Dylan</a>
-        <a href="ElSilencioAlmeria.html">El Silencio Almeria</a>
-        <a href="LallaveGranada.html">La Llave Granada</a>
-    </div>
-</div>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="tuo-logo.png" alt="Arena Logo">
+            </a>
+        </div>
+        
+        <div class="dropdown">
+            <button class="dropbtn">MISIONES ▼</button>
+            <div class="dropdown-content">
+                <a href="Arena51.html">Arena 51</a>
+                <a href="ElBunker21.html">El Búnker 21</a>
+                <a href="ElCasoDylan.html">El Caso Dylan</a>
+                <a href="ElSilencioAlmeria.html">El Silencio</a>
+                <a href="LallaveGranada.html">La Llave Granada</a>
+            </div>
+        </div>
     </nav>
 
     <div class="hero">
         <h1 class="logo-text">ARENA ESCAPE</h1>
-        <p class="subtitle">IL LIVELLO PRO È STATO SBLOCCATO!</p>
-        <a href="#prenota" class="btn-cta">RESERVA TU SITIO</a>
+        <p class="subtitle">¡EL NIVEL PRO HA SIDO DESBLOQUEADO!</p>
+        <a href="#misiones" class="btn-cta">RESERVA TU MISIÓN</a>
     </div>
 
 </body>
