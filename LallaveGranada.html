@@ -29,7 +29,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 10px 50px;
+            padding: 5px 50px; /* Ridotto leggermente il padding verticale per bilanciare il logo grande */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -39,7 +39,12 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .logo-container img { height: 60px; filter: drop-shadow(0 0 10px var(--primary-color)); }
+        /* Modificata l'altezza da 60px a 120px per rendere il logo ben visibile */
+        .logo-container img { 
+            height: 120px; 
+            filter: drop-shadow(0 0 12px var(--primary-color)); 
+            display: block;
+        }
 
         .nav-right { display: flex; align-items: center; gap: 20px; }
 
@@ -86,8 +91,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 120px 10% 50px 10%;
-            /* Imagen de fondo actualizada a bunker.png */
+            padding: 140px 10% 50px 10%; /* Aumentato leggermente il padding top per il logo più grande */
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
                         url('LaLlaveAGranada.png') no-repeat center center/cover;
             background-attachment: scroll; 
@@ -302,6 +306,7 @@
             nav { padding: 10px 20px; }
             .nav-right { flex-direction: column; gap: 10px; }
             .data-sheet { margin-top: 0px; }
+            .logo-container img { height: 90px; } /* Leggermente ridotto sui display piccoli */
         }
     </style>
 </head>
@@ -329,7 +334,7 @@
                 <span class="badge-new" id="t-badge">Nivel: Avanzado</span>
                 <h1 id="t-main-title">La Llave A Granada </h1>
                 <p class="story-text" id="t-story">
-🌙 Un escape room que te lleva más allá de las murallas del tiempo…Granada esconde un secreto entre sus calles empedradas, sus leyendas y su historia. Una llave perdida, olvidada por los siglos, espera ser encontrada. ¿Eres lo suficientemente valiente para descifrar los enigmas que la protegen?📜 Tu misión: recorrer la ciudad, descubrir pistas ocultas en plazas, rincones y edificios que guardan un pasado susurrante. Cada acertijo resuelto te acercará un paso más a la llave secreta, capaz de abrir puertas nunca abiertas.
+🌙 Un escape room que te lleva más allá de las murallas del tiempo…Granada esconde un secreto entre sus calles empedradas, sus leyendas y su historia. Una llave perdida, olvidada por los siglos, espera ser encontrada. ¿Eres lo suficientemente valiente para descifrar los enigmas que la protegen?📜 Tu misión: recorrer la ciudad, descubrir pistas ocultas en plazas, rincones y edificios que guardan un pasado susurrante. Cada acertijo resuelto te acercará un paso más a la llave secreta, capaz di abrir puertas nunca abiertas.
                 </p>
 
                 <div class="pricing-container">
@@ -394,7 +399,7 @@
             <div class="booking-panel">
                 <h3 id="t-location">Ubicación</h3>
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.3734493390977!2d-3.602758284698579!3d37.1683415798744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71fcb9e2c451cb%3A0xc6c7a72c1c68e1a!2sC.%20P%C3%A1rraga%2C%205%2C%2018002%20Granada%2C%20Spain!5e0!3m2!1sen!2sit!4v1683210000000!5m2!1sen!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=Calle%20P%C3%A1rraga%205,%20Granada&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="location-info">
                     <p>📍 <strong id="t-address">Dirección:</strong> Calle Párraga 5, Granada</p>
@@ -455,88 +460,4 @@
                 nav_back: "TORNA ALLA HOME",
                 badge: "Livello: Avanzato",
                 main_title: "La Chiave A Granada",
-                story: "🌙 Una escape room che ti porta oltre i confini del tempo… Granada nasconde un segreto tra le sue strade acciottolate, le sue leggende e la sua storia. Una chiave perduta, dimenticata dai secoli, attende di essere scoperta. Sei abbastanza coraggioso da decifrare gli enigmi che la proteggono? 📜 La tua missione: esplorare la città, scoprendo indizi nascosti in piazze, angoli ed edifici che custodiscono un passato sussurrato. Ogni enigma risolto ti avvicinerà di un passo alla chiave segreta, capace di aprire porte mai varcate prima.",
-                price_1: "PREZZI (Lunedì - Giovedì)",
-                price_2: "PREZZI (Venerdì - Domenica)",
-                players: "Giocatori",
-                person: "/ persona",
-                data_title: "DATI MISSIONE",
-                agents: "Giocatori",
-                time: "Tempo",
-                diff: "Difficoltà",
-                critical: "ALTA (4/5)",
-                btn_reserve: "INIZIA PRENOTAZIONE",
-                book_title: "PRENOTA ORA",
-                choose_date: "Scegli la tua data",
-                cal_placeholder: "Il widget interattivo del calendario non può essere generato con codice statico perché richiede la connessione al database del tuo sistema di prenotazione. <br><br><strong>Qui dovrai incollare il codice (es. un iframe) fornito dalla tua piattaforma di prenotazione (Bookeo, Bookly, ecc.).</strong>",
-                location: "Posizione",
-                address: "Indirizzo:",
-                phone: "Telefono:"
-            },
-            ca: {
-                nav_back: "TORNAR A L'INICI",
-                badge: "Nivell: Avançat",
-                main_title: "La Clau A Granada",
-                story: "🌙 Una escape room que et porta més enllà dels límits del temps... Granada amaga un secret entre els seus carrers empedrats, les seves llegendes i la seva història. Una clau perduda, oblidada durant segles, espera ser descoberta. Ets prou valent per desxifrar els enigmes que la protegeixen? 📜 La teva missió: explorar la ciutat, descobrint pistes amagades en places, cantonades i edificis que custodien un passat xiuxiuejat. Cada trencaclosques que resolguis t'acostarà un pas més a la clau secreta, capaç d'obrir portes mai abans vistes.",
-                price_1: "PREUS (Dilluns - Dijous)",
-                price_2: "PREUS (Divendres - Diumenge)",
-                players: "Jugadors",
-                person: "/ persona",
-                data_title: "DADES DE MISSIÓ",
-                agents: "Agents",
-                time: "Temps",
-                diff: "Dificultat",
-                critical: "ALTA (4/5)",
-                btn_reserve: "INICIAR RESERVA",
-                book_title: "RESERVA ARA",
-                choose_date: "Tria la teva data",
-                cal_placeholder: "El widget interactiu del calendari no es pot generar amb codi estàtic perquè requereix connectar-se a la base de dades del teu sistema de reserves. <br><br><strong>Aquí hauràs d'enganxar el codi (per exemple, un iframe) que et proporcioni la teva plataforma de reserves (Bookeo, Bookly, etc.).</strong>",
-                location: "Ubicació",
-                address: "Adreça:",
-                phone: "Telèfon:"
-            }
-        };
-
-        const langBtns = document.querySelectorAll('.lang-btn');
-
-        function setLanguage(lang) {
-            // Aggiorna testi singoli
-            document.getElementById('t-nav-back').innerText = translations[lang].nav_back;
-            document.getElementById('t-badge').innerText = translations[lang].badge;
-            document.getElementById('t-main-title').innerText = translations[lang].main_title;
-            document.getElementById('t-story').innerText = translations[lang].story;
-            document.getElementById('t-price-1').innerText = translations[lang].price_1;
-            document.getElementById('t-price-2').innerText = translations[lang].price_2;
-            document.getElementById('t-data-title').innerText = translations[lang].data_title;
-            document.getElementById('t-agents').innerText = translations[lang].agents;
-            document.getElementById('t-time').innerText = translations[lang].time;
-            document.getElementById('t-diff').innerText = translations[lang].diff;
-            document.getElementById('t-critical').innerText = translations[lang].critical;
-            document.getElementById('t-btn-reserve').innerText = translations[lang].btn_reserve;
-            document.getElementById('t-book-title').innerText = translations[lang].book_title;
-            document.getElementById('t-choose-date').innerText = translations[lang].choose_date;
-            document.getElementById('t-cal-placeholder').innerHTML = translations[lang].cal_placeholder;
-            document.getElementById('t-location').innerText = translations[lang].location;
-            document.getElementById('t-address').innerText = translations[lang].address;
-            document.getElementById('t-phone').innerText = translations[lang].phone;
-
-            // Aggiorna testi ripetuti
-            document.querySelectorAll('.t-players').forEach(el => el.innerText = translations[lang].players);
-            document.querySelectorAll('.t-person').forEach(el => el.innerText = translations[lang].person);
-        }
-
-        langBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Rimuove la classe 'active' da tutti i pulsanti
-                langBtns.forEach(b => b.classList.remove('active'));
-                // Aggiunge la classe 'active' al pulsante cliccato
-                btn.classList.add('active');
-                // Prende la lingua dal data-attribute e aggiorna
-                const selectedLang = btn.getAttribute('data-lang');
-                setLanguage(selectedLang);
-            });
-        });
-    </script>
-</body>
-</html>
+                story: "🌙 Una escape room che ti porta oltre i confini del tempo… Granada nasconde un segreto tra le sue strade acciottolate, le sue leggende e la sua storia. Una chiave perduta, dimenticata dai secoli, attende di essere scoperta. Sei abbastanza coraggioso da decifrare gli enigmi che la proteggono? 📜 La tua missione: esplorare la città, scoprendo indizi
