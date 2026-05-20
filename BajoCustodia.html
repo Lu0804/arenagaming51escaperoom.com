@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El caso Dylan - Misión</title>
+    <title>Bajo Custodia - Misión</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #0f9122 
-            --accent-color: #0f9122
+            /* ¡Arreglado! Se añadieron los puntos y comas al final de cada variable */
+            --primary-color: #0f9122;
+            --accent-color: #0f9122;
             --bg-dark: #0a0a0a;
         }
 
@@ -35,7 +36,8 @@
             z-index: 1000;
             background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(226, 29, 38, 0.3);
+            /* Cambiado de rojo estático a usar tu color primario verde */
+            border-bottom: 1px solid rgba(15, 145, 34, 0.3);
         }
 
         .logo-container img { height: 60px; filter: drop-shadow(0 0 5px var(--primary-color)); }
@@ -129,7 +131,7 @@
         /* Tariffe */
         .pricing-container {
             background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(226, 29, 38, 0.2);
+            border: 1px solid rgba(15, 145, 34, 0.2);
             padding: 20px;
         }
 
@@ -157,7 +159,7 @@
             transition: 0.3s;
         }
 
-        .price-card:hover { border-color: var(--primary-color); background: rgba(226, 29, 38, 0.1); }
+        .price-card:hover { border-color: var(--primary-color); background: rgba(15, 145, 34, 0.1); }
         .price-card h4 { color: #ccc; font-size: 0.9rem; margin-bottom: 5px; }
         .price-card p { color: white; font-size: 1.4rem; font-weight: bold; font-family: 'Orbitron', sans-serif;}
         .price-card span { font-size: 0.8rem; color: #888; }
@@ -170,7 +172,7 @@
             backdrop-filter: blur(10px);
             position: relative;
             animation: slideInRight 1s ease-out;
-            box-shadow: 0 0 30px rgba(226, 29, 38, 0.2);
+            box-shadow: 0 0 30px rgba(15, 145, 34, 0.2);
             height: fit-content;
             margin-top: 50px;
         }
@@ -245,7 +247,7 @@
 
         .booking-panel {
             background: rgba(20, 20, 20, 1);
-            border: 1px solid rgba(226, 29, 38, 0.3);
+            border: 1px solid rgba(15, 145, 34, 0.3);
             padding: 30px;
         }
 
@@ -313,9 +315,9 @@
             
             <div class="content-box">
                 <span class="badge-new" id="t-badge">Nivel: Avanzado</span>
-                <h1 id="t-main-title">EL CASO DYLAN</h1>
+                <h1 id="t-main-title">BAJO CUSTODIA</h1>
                 <p class="story-text" id="t-story">
-El metal frío de los grilletes y el eco de los pasos del sheriff en el pasillo. No estás aquí por un delito común. Estás encerrado porque sabes algo que ellos necesitan ocultar. En la oficina central de la prisión, los sheriffs custodian bajo llave no solo los candados de tu celda, sino toda la información, las pruebas y los documentos que pueden limpiar tu nombre… o hundirte para siempre. El cambio de turno de los guardias te ha dejado una ventana de 60 minutos de absoluta calma. Sesenta minutos para abrir esa reja, infiltrarte en la zona de control, recuperar lo que es tuyo y desaparecer sin dejar rastro. Si te atrapan dentro de la oficina, estar «bajo custodia» será el menor de tus problemas…
+                    El metal frío de los grilletes y el eco de los pasos del sheriff en el pasillo. No estás aquí por un delito común. Estás encerrado porque sabes algo que ellos necesitan ocultar. En la oficina central de la prisión, los sheriffs custodian bajo llave no solo los candados de tu celda, sino toda la información, las pruebas y los documentos que pueden limpiar tu nombre… o hundirte para siempre. El cambio de turno de los guardias te ha dejado una ventana de 60 minutos de absoluta calma. Sesenta minutos para abrir esa reja, infiltrarte en la zona de control, recuperar lo que es tuyo y desaparecer sin dejar rastro. Si te atrapan dentro de la oficina, estar «bajo custodia» será el menor de tus problemas…
                 </p>
 
                 <div class="pricing-container">
@@ -351,7 +353,7 @@ El metal frío de los grilletes y el eco de los pasos del sheriff en el pasillo.
                 </div>
                 <div class="data-row">
                     <span class="data-label" id="t-diff">Dificultad</span>
-                    <span class="data-value" style="color: #ff3333;" id="t-critical">ALTA (4/5)</span>
+                    <span class="data-value" style="color: #0f9122;" id="t-critical">ALTA (4/5)</span>
                 </div>
                 
                 <a href="#reserva-seccion" class="btn-reserve" id="t-btn-reserve">RESERVAR AHORA</a>
@@ -399,14 +401,16 @@ El metal frío de los grilletes y el eco de los pasos del sheriff en el pasillo.
             en: {
                 nav_back: "BACK TO HOME", badge: "Level: Advanced", main_title: "IN CUSTODY",
                 price_1: "PRICES (Monday - Thursday)", price_2: "PRICES (Friday - Sunday)", players: "Players", person: "/ person",
-                story: "The cold metal of the shackles and the echo of the sheriff's footsteps in the hallway. You're not here for a common crime. You're locked up because you know something they need to hide. In the prison's central office, the sheriffs keep under lock and key not only the padlocks on your cell, but all the information, evidence, and documents that could clear your name… or ruin you forever. The guards' shift change has given you a 60-minute window of absolute calm. Sixty minutes to open that gate, infiltrate the control area, retrieve what's yours, and disappear without a trace. If they catch you inside the office, being "in custody" will be the least of your problems…",
+                /* ¡Arreglado! Se cambiaron las comillas internas dobles por comillas simples 'in custody' */
+                story: "The cold metal of the shackles and the echo of the sheriff's footsteps in the hallway. You're not here for a common crime. You're locked up because you know something they need to hide. In the prison's central office, the sheriffs keep under lock and key not only the padlocks on your cell, but all the information, evidence, and documents that could clear your name… or ruin you forever. The guards' shift change has given you a 60-minute window of absolute calm. Sixty minutes to open that gate, infiltrate the control area, retrieve what's yours, and disappear without a trace. If they catch you inside the office, being 'in custody' will be the least of your problems…",
                 data_title: "MISSION DATA", agents: "Agents", time: "Time", diff: "Difficulty", critical: "HIGH (4/5)",
                 btn_reserve: "BOOK NOW", book_title: "BOOKING CALENDAR", choose_date: "Select your slot",
                 location: "Meeting Point", address: "Address:", phone: "Phone:"
             },
             it: {
                 nav_back: "TORNA ALLA HOME", badge: "Livello: Avanzato", main_title: "SOTTO CUSTODIA",
-                story: "Il freddo metallo delle catene e l'eco dei passi dello sceriffo nel corridoio. Non sei qui per un crimine comune. Sei rinchiuso perché sai qualcosa che devono nascondere. Nell'ufficio centrale del carcere, gli sceriffi custodiscono sotto chiave non solo i lucchetti della tua cella, ma anche tutte le informazioni, le prove e i documenti che potrebbero scagionarti... o rovinarti per sempre. Il cambio turno delle guardie ti ha concesso 60 minuti di assoluta tranquillità. Sessanta minuti per aprire quel cancello, infiltrarti nella sala di controllo, recuperare ciò che ti appartiene e sparire senza lasciare traccia. Se ti beccano dentro l'ufficio, essere "in custodia" sarà il minore dei tuoi problemi...",
+                /* ¡Arreglado! También se cambiaron las comillas internas a simples para evitar errores en navegadores estrictos */
+                story: "Il freddo metallo delle catene e l'eco dei passi dello sceriffo nel corridoio. Non sei qui per un crimine comune. Sei rinchiuso perché sai qualcosa che devono nascondere. Nell'ufficio centrale del carcere, gli sceriffi custodiscono sotto chiave non solo i lucchetti della tua cella, ma anche tutte le informazioni, le prove e i documenti che potrebbero scagionarti... o rovinarti per sempre. Il cambio turno delle guardie ti ha concesso 60 minuti di assoluta tranquillità. Sessanta minuti per aprire quel cancello, infiltrarti nella sala di controllo, recuperare ciò che ti appartiene e sparire senza lasciare traccia. Se ti beccano dentro l'ufficio, essere 'in custodia' sarà il minore dei tuoi problemi...",
                 price_1: "PREZZI (Lunedì - Giovedì)", price_2: "PREZZI (Venerdì - Domenica)", players: "Giocatori", person: "/ persona",
                 data_title: "DATI MISSIONE", agents: "Agenti", time: "Tempo", diff: "Difficoltà", critical: "ALTA (4/5)",
                 btn_reserve: "PRENOTA ORA", book_title: "CALENDARIO PRENOTAZIONI", choose_date: "Scegli il tuo turno",
@@ -454,6 +458,11 @@ El metal frío de los grilletes y el eco de los pasos del sheriff en el pasillo.
                 setLanguage(btn.getAttribute('data-lang'));
             });
         });
+
+        /* ¡Añadido! Inicializa la traducción en español al cargar la página por primera vez */
+        window.onload = () => {
+            setLanguage('es');
+        };
     </script>
 </body>
 </html>
