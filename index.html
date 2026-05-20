@@ -254,15 +254,15 @@
                         <p id="t-desc-dylan">Únete a la investigación del detective de las pesadillas.</p>
                     </div>
                 </a>
-
-                <a href="ElSilencioAlmeria.html" class="mission-preview">
-                    <div class="mission-img" style="background-image: url('elsilenciodealmeria.png');"></div>
+				
+				<a href="BajoCustodia.html" class="mission-preview">
+                    <div class="mission-img" style="background-image: url('BajoCustodia.png');"></div>
                     <div class="mission-info">
-                        <h3 id="t-title-silencio">MISIÓN ALMERÍA</h3>
-                        <p id="t-desc-silencio">El silencio de Almería esconde verdades inquietantes.</p>
+                        <h3 id="t-title-Bajo">BAJO CUSTODIA</h3>
+                        <p id="t-desc-Bajo">Estás bajo custodia. ¿Serás capaz de burlar a la ley?</p>
                     </div>
                 </a>
-
+				
                 <a href="LallaveGranada.html" class="mission-preview">
                     <div class="mission-img" style="background-image: url('LaLlaveAGranada.png');"></div>
                     <div class="mission-info">
@@ -271,6 +271,14 @@
                     </div>
                 </a>
 
+				<a href="ElSilencioAlmeria.html" class="mission-preview">
+                    <div class="mission-img" style="background-image: url('elsilenciodealmeria.png');"></div>
+                    <div class="mission-info">
+                        <h3 id="t-title-silencio">MISIÓN ALMERÍA</h3>
+                        <p id="t-desc-silencio">El silencio de Almería esconde verdades inquietantes.</p>
+                    </div>
+                </a>
+				
             </div>
         </div>
 
@@ -281,39 +289,43 @@
         const translations = {
             es: {
                 subtitle: "SELECCIONA TU MISIÓN",
-                titles: { arena: "ARENA 51", bunker: "EL BUNKER 21", dylan: "EL CASO DYLAN", silencio: "EL SILENCIO DE ALMERÍA", llave: "LA LLAVE GRANADA" },
+                titles: { arena: "ARENA 51", bunker: "EL BUNKER 21", dylan: "EL CASO DYLAN",Bajo "BAJO CUSTODIA", llave: "LA LLAVE GRANADA", silencio: "EL SILENCIO DE ALMERÍA" },
                 arena: "Investiga los secretos ocultos en el motel más misterioso del desierto. Una misión clasificada te espera.",
                 bunker: "¿Podrás sobrevivir a las profundidades del Bunker 21? El tiempo corre y el oxígeno escasea.",
                 dylan: "Únete a la investigación del detective de las pesadillas. Un caso oscuro que desafía la lógica.",
-                silencio: "El silencio de Almería esconde verdades inquietantes. Resuelve el enigma antes de que sea tarde.",
-                llave: "Encuentra la llave perdida en Granada. Un desafío de intelecto por las calles históricas."
+                bajo: "Estás bajo custodia. ¿Serás capaz de burlar a la ley?",
+                llave: "Encuentra la llave perdida en Granada. Un desafío de intelecto por las calles históricas.",
+				silencio: "El silencio de Almería esconde verdades inquietantes. Resuelve el enigma antes de que sea tarde."
             },
             en: {
                 subtitle: "SELECT YOUR MISSION",
-                titles: { arena: "ARENA 51", bunker: "BUNKER 21", dylan: "THE DYLAN CASE", silencio: "ALMERÍA'S SILENCE", llave: "THE GRANADA KEY" },
+                titles: { arena: "ARENA 51", bunker: "BUNKER 21", dylan: "THE DYLAN CASE",Bajo "IN CUSTODY", llave: "THE GRANADA KEY", silencio: "ALMERÍA'S SILENCE" },
                 arena: "Investigate the secrets hidden in the desert's most mysterious motel. A classified mission awaits.",
                 bunker: "Can you survive the depths of Bunker 21? Time is running out and oxygen is low.",
                 dylan: "Join the nightmare detective's investigation. A dark case that defies logic and fear.",
-                silencio: "The silence of Almería hides disturbing truths. Solve the riddle before it's too late.",
-                llave: "Find the lost key in Granada. A challenge of intellect through the city's historic streets."
+                bajo: "You are in custody. Will you be able to trick the law?",
+                llave: "Find the lost key in Granada. A challenge of intellect through the city's historic streets.",
+				silencio: "The silence of Almería hides disturbing truths. Solve the riddle before it's too late."
             },
             it: {
                 subtitle: "SELEZIONA LA TUA MISSIONE",
-                titles: { arena: "ARENA 51", bunker: "IL BUNKER 21", dylan: "IL CASO DYLAN", silencio: "IL SILENZIO DI ALMERÍA", llave: "LA CHIAVE DI GRANADA" },
+                titles: { arena: "ARENA 51", bunker: "IL BUNKER 21", dylan: "IL CASO DYLAN",Bajo "SOTTO CUSTODIA", llave: "LA CHIAVE DI GRANADA", silencio: "IL SILENZIO DI ALMERÍA" },
                 arena: "Investiga i segreti celati nel motel più misterioso del deserto. Una missione classificata ti attende.",
                 bunker: "Riuscirai a sopravvivere alle profondità del Bunker 21? Il tempo scorre e l'ossigeno scarseggia.",
                 dylan: "Unisciti all'indagine del detective dell'incubo. Un caso oscuro che sfida la logica e la paura.",
-                silencio: "Il silenzio di Almería nasconde verità inquietanti. Risolvi l'enigma prima che sia troppo tardi.",
-                llave: "Trova la chiave perduta a Granada. Una sfida di intelletto tra le strade storiche della città."
+                bajo: "Sei sotto custodia. Sarai capace di ingannare la legge?",
+                llave: "Trova la chiave perduta a Granada. Una sfida di intelletto tra le strade storiche della città.",
+				silencio: "Il silenzio di Almería nasconde verità inquietanti. Risolvi l'enigma prima che sia troppo tardi."
             },
             ca: {
                 subtitle: "SELECCIONA LA TEVA MISSIÓ",
-                titles: { arena: "ARENA 51", bunker: "EL BÚNQUER 21", dylan: "EL CAS DYLAN", silencio: "EL SILENCI D'ALMERÍA", llave: "LA CLAU DE GRANADA" },
+                titles: { arena: "ARENA 51", bunker: "EL BÚNQUER 21", dylan: "EL CAS DYLAN",Bajo "SOTA CUSTÒDIA" llave: "LA CLAU DE GRANADA" , silencio: "EL SILENCI D'ALMERÍA"},
                 arena: "Investiga els secrets ocults al motel més misteriós del desert. Una missió classificada t'espera.",
                 bunker: "Podràs sobreviure a les profunditats del Bunker 21? El temps corre i l'oxigen s'esgota.",
                 dylan: "Uneix-te a la investigació del detectiu dels malsons. Un cas fosc que desafia la lògica.",
-                silencio: "El silenci d'Almeria amaga veritats inquietants. Resol l'enigma abans que sigui tard.",
-                llave: "Troba la clau perduda a Granada. Un desafiament d'intel·lecte pels carrers històrics."
+                bajo: "Ets sota custòdia. Seràs capaç d'enganyar la llei?",
+                llave: "Troba la clau perduda a Granada. Un desafiament d'intel·lecte pels carrers històrics.",
+				silencio: "El silenci d'Almeria amaga veritats inquietants. Resol l'enigma abans que sigui tard."
             }
         };
 
@@ -322,8 +334,9 @@
             { primary: '#4583FF', accent: '#4583FF' }, // 0: Arena 51 (Giallo/Verdino Cyber)
             { primary: '#ff7700', accent: '#8b4513' }, // 1: El Bunker 21 (Arancione/Marrone Ruggine)
             { primary: '#ff2222', accent: '#8b0000' }, // 2: El Caso Dylan (Rosso Sangue/Investigativo)
-            { primary: '#64068c', accent: '#64068c' }, // 3: Misión Almería (Ciano Originale)
+            { primary: '#0f9122', accent: '#0f9122' }, // 3: Bajo Custodia (verde legge)
             { primary: '#ffd700', accent: '#b8860b' }  // 4: La Llave Granada (Giallo Ocra Storico)
+			{ primary: '#64068c', accent: '#64068c' }, // 5: Misión Almería (Ciano Originale)
         ];
 
         function setLanguage(lang) {
